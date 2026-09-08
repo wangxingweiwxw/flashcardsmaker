@@ -1,0 +1,19 @@
+{
+  "valid": true,
+  "errors": [],
+  "warnings": [
+    "cards[0] 仍是 draft，不能视为正式学习内容",
+    "cards[1] 仍是 draft，不能视为正式学习内容",
+    "cards[2] 仍是 draft，不能视为正式学习内容",
+    "cards[3] 仍是 draft，不能视为正式学习内容",
+    "cards[4] 仍是 draft，不能视为正式学习内容",
+    "cards[5] 仍是 draft，不能视为正式学习内容",
+    "cards[6] 仍是 draft，不能视为正式学习内容",
+    "cards[7] 仍是 draft，不能视为正式学习内容",
+    "cards[8] 仍是 draft，不能视为正式学习内容",
+    "cards[9] 仍是 draft，不能视为正式学习内容",
+    "cards[10] 仍是 draft，不能视为正式学习内容",
+    "cards[11] 仍是 draft，不能视为正式学习内容"
+  ],
+  "cardCount": 12
+}

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "kdf/1.0",
+  "deck": {
+    "id": "kindergarten-animal-vocabulary",
+    "title": "幼儿动物词汇卡",
+    "description": "3 至 6 岁常见动物中英启蒙词汇。",
+    "version": "1.0.0",
+    "defaultCardType": "image-vocabulary",
+    "locale": "zh-CN",
+    "theme": { "accent": "#D85A30" },
+    "learningMode": { "showImageFirst": true, "autoplayAudio": false, "answerReveal": "tap", "showSource": false }
+  },
+  "categories": [
+    { "id": "animals", "name": "Animals", "label": "动物", "parentId": null, "sortOrder": 1 }
+  ],
+  "cards": [
+    {
+      "id": "animal-cat-001",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "animals",
+      "front": { "prompt": "这是什么动物？", "primary": "Cat" },
+      "back": { "primary": "Cat", "translation": "猫", "phonetic": "/kæt/", "example": "This is a cat." },
+      "tags": ["animal", "vocabulary", "kindergarten"],
+      "difficulty": 1,
+      "source": { "type": "manual", "documentId": null, "locator": null, "excerpt": null },
+      "generation": { "method": "manual", "model": null, "generatedAt": null, "reviewedAt": null }
+    },
+    {
+      "id": "animal-dog-001",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "animals",
+      "front": { "prompt": "这是什么动物？", "primary": "Dog" },
+      "back": { "primary": "Dog", "translation": "狗", "phonetic": "/dɔːɡ/", "example": "This is a dog." },
+      "tags": ["animal", "vocabulary", "kindergarten"],
+      "difficulty": 1,
+      "source": { "type": "manual", "documentId": null, "locator": null, "excerpt": null },
+      "generation": { "method": "manual", "model": null, "generatedAt": null, "reviewedAt": null }
+    }
+  ]
+}
