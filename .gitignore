@@ -1,0 +1,10 @@
+desktop.ini
+Thumbs.db
+
+# Copyrighted CFA source material — kept local only, never pushed to the public repo
+source/
+*.pdf
+*.zip
+*.pptx
+*.ppt
+*.docx

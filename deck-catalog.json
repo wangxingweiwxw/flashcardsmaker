@@ -1,0 +1,10 @@
+{
+  "catalogVersion": "1.0",
+  "decks": [
+    {
+      "id": "cfa-level-1",
+      "path": "./decks/cfa-level-1/deck.json",
+      "featured": true
+    }
+  ]
+}
