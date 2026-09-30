@@ -1,0 +1,1253 @@
+{
+  "schemaVersion": "kdf/1.0",
+  "deck": {
+    "id": "raz-picture-vocabulary",
+    "title": "RAZ 图像英语词汇卡",
+    "description": "根据 RAZ词汇.pdf 逐页复核制作的图像英语词汇卡；正面显示核心插图与英文，翻面后显示音标和中文释义；源文件重复词已去重。",
+    "version": "1.3.0",
+    "defaultCardType": "image-vocabulary",
+    "locale": "zh-CN",
+    "theme": {
+      "accent": "#2B9DC7"
+    },
+    "learningMode": {
+      "showImageFirst": true,
+      "autoplayAudio": false,
+      "answerReveal": "tap",
+      "showSource": true
+    }
+  },
+  "categories": [
+    {
+      "id": "raz-vocabulary",
+      "name": "RAZ Vocabulary",
+      "label": "RAZ 图像词汇",
+      "parentId": null,
+      "sortOrder": 1
+    },
+    {
+      "id": "page-01",
+      "name": "Page 1",
+      "label": "第 1 页",
+      "parentId": "raz-vocabulary",
+      "sortOrder": 1
+    },
+    {
+      "id": "page-02",
+      "name": "Page 2",
+      "label": "第 2 页",
+      "parentId": "raz-vocabulary",
+      "sortOrder": 2
+    },
+    {
+      "id": "page-03",
+      "name": "Page 3",
+      "label": "第 3 页",
+      "parentId": "raz-vocabulary",
+      "sortOrder": 3
+    },
+    {
+      "id": "page-04",
+      "name": "Page 4",
+      "label": "第 4 页",
+      "parentId": "raz-vocabulary",
+      "sortOrder": 4
+    },
+    {
+      "id": "page-05",
+      "name": "Page 5",
+      "label": "第 5 页",
+      "parentId": "raz-vocabulary",
+      "sortOrder": 5
+    },
+    {
+      "id": "page-06",
+      "name": "Page 6",
+      "label": "第 6 页",
+      "parentId": "raz-vocabulary",
+      "sortOrder": 6
+    },
+    {
+      "id": "page-07",
+      "name": "Page 7",
+      "label": "第 7 页",
+      "parentId": "raz-vocabulary",
+      "sortOrder": 7
+    },
+    {
+      "id": "page-08",
+      "name": "Page 8",
+      "label": "第 8 页",
+      "parentId": "raz-vocabulary",
+      "sortOrder": 8
+    },
+    {
+      "id": "page-09",
+      "name": "Page 9",
+      "label": "第 9 页",
+      "parentId": "raz-vocabulary",
+      "sortOrder": 9
+    },
+    {
+      "id": "page-10",
+      "name": "Page 10",
+      "label": "第 10 页",
+      "parentId": "raz-vocabulary",
+      "sortOrder": 10
+    },
+    {
+      "id": "page-11",
+      "name": "Page 11",
+      "label": "第 11 页",
+      "parentId": "raz-vocabulary",
+      "sortOrder": 11
+    },
+    {
+      "id": "page-12",
+      "name": "Page 12",
+      "label": "第 12 页",
+      "parentId": "raz-vocabulary",
+      "sortOrder": 12
+    },
+    {
+      "id": "page-13",
+      "name": "Page 13",
+      "label": "第 13 页",
+      "parentId": "raz-vocabulary",
+      "sortOrder": 13
+    },
+    {
+      "id": "page-14",
+      "name": "Page 14",
+      "label": "第 14 页",
+      "parentId": "raz-vocabulary",
+      "sortOrder": 14
+    },
+    {
+      "id": "page-15",
+      "name": "Page 15",
+      "label": "第 15 页",
+      "parentId": "raz-vocabulary",
+      "sortOrder": 15
+    },
+    {
+      "id": "page-16",
+      "name": "Page 16",
+      "label": "第 16 页",
+      "parentId": "raz-vocabulary",
+      "sortOrder": 16
+    }
+  ],
+  "cards": [
+    {
+      "id": "raz-vocabulary-001-p-e",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-01",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "P.E.",
+        "image": "./images/raz/raz-vocabulary-001-p-e-front.jpg"
+      },
+      "back": {
+        "primary": "P.E.",
+        "translation": "体育课",
+        "phonetic": "/ˌpiː ˈiː/",
+        "example": "P.E. — 体育课"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 1，上半页词卡",
+        "excerpt": "图文词卡：P.E.；中文释义：体育课；音标：/ˌpiː ˈiː/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-002-sweep",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-01",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "sweep",
+        "image": "./images/raz/raz-vocabulary-002-sweep-front.jpg"
+      },
+      "back": {
+        "primary": "sweep",
+        "translation": "扫；打扫",
+        "phonetic": "/swiːp/",
+        "example": "sweep — 扫；打扫"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 1，下半页词卡",
+        "excerpt": "图文词卡：sweep；中文释义：扫；打扫；音标：/swiːp/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-003-doctor",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-02",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "doctor",
+        "image": "./images/raz/raz-vocabulary-003-doctor-front.jpg"
+      },
+      "back": {
+        "primary": "doctor",
+        "translation": "医生",
+        "phonetic": "/ˈdɒktə(r)/",
+        "example": "doctor — 医生"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 2，上半页词卡",
+        "excerpt": "图文词卡：doctor；中文释义：医生；音标：/ˈdɒktə(r)/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-004-room",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-02",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "room",
+        "image": "./images/raz/raz-vocabulary-004-room-front.jpg"
+      },
+      "back": {
+        "primary": "room",
+        "translation": "房间",
+        "phonetic": "/ruːm/",
+        "example": "room — 房间"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 2，下半页词卡",
+        "excerpt": "图文词卡：room；中文释义：房间；音标：/ruːm/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-005-nurse",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-03",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "nurse",
+        "image": "./images/raz/raz-vocabulary-005-nurse-front.jpg"
+      },
+      "back": {
+        "primary": "nurse",
+        "translation": "护士",
+        "phonetic": "/nɜːs/",
+        "example": "nurse — 护士"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 3，上半页词卡",
+        "excerpt": "图文词卡：nurse；中文释义：护士；音标：/nɜːs/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-006-busy",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-03",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "busy",
+        "image": "./images/raz/raz-vocabulary-006-busy-front.jpg"
+      },
+      "back": {
+        "primary": "busy",
+        "translation": "忙碌的",
+        "phonetic": "/ˈbɪzi/",
+        "example": "busy — 忙碌的"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 3，下半页词卡",
+        "excerpt": "图文词卡：busy；中文释义：忙碌的；音标：/ˈbɪzi/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-008-worker",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-04",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "worker",
+        "image": "./images/raz/raz-vocabulary-008-worker-front.jpg"
+      },
+      "back": {
+        "primary": "worker",
+        "translation": "工人",
+        "phonetic": "/ˈwɜːkə(r)/",
+        "example": "worker — 工人"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 4，下半页词卡",
+        "excerpt": "图文词卡：worker；中文释义：工人；音标：/ˈwɜːkə(r)/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-009-tired",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-05",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "tired",
+        "image": "./images/raz/raz-vocabulary-009-tired-front.jpg"
+      },
+      "back": {
+        "primary": "tired",
+        "translation": "累的",
+        "phonetic": "/ˈtaɪəd/",
+        "example": "tired — 累的"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 5，上半页词卡",
+        "excerpt": "图文词卡：tired；中文释义：累的；音标：/ˈtaɪəd/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-010-floor",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-05",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "floor",
+        "image": "./images/raz/raz-vocabulary-010-floor-front.jpg"
+      },
+      "back": {
+        "primary": "floor",
+        "translation": "地板",
+        "phonetic": "/flɔː(r)/",
+        "example": "floor — 地板"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 5，下半页词卡",
+        "excerpt": "图文词卡：floor；中文释义：地板；音标：/flɔː(r)/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-011-chore",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-06",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "chore",
+        "image": "./images/raz/raz-vocabulary-011-chore-front.jpg"
+      },
+      "back": {
+        "primary": "chore",
+        "translation": "家务",
+        "phonetic": "/tʃɔː(r)/",
+        "example": "chore — 家务"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 6，上半页词卡",
+        "excerpt": "图文词卡：chore；中文释义：家务；音标：/tʃɔː(r)/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-012-helpful",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-06",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "helpful",
+        "image": "./images/raz/raz-vocabulary-012-helpful-front.jpg"
+      },
+      "back": {
+        "primary": "helpful",
+        "translation": "有帮助的",
+        "phonetic": "/ˈhelpfl/",
+        "example": "helpful — 有帮助的"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 6，下半页词卡",
+        "excerpt": "图文词卡：helpful；中文释义：有帮助的；音标：/ˈhelpfl/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-013-job",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-07",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "job",
+        "image": "./images/raz/raz-vocabulary-013-job-front.jpg"
+      },
+      "back": {
+        "primary": "job",
+        "translation": "工作",
+        "phonetic": "/dʒɒb/",
+        "example": "job — 工作"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 7，上半页词卡",
+        "excerpt": "图文词卡：job；中文释义：工作；音标：/dʒɒb/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-014-clean",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-07",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "clean",
+        "image": "./images/raz/raz-vocabulary-014-clean-front.jpg"
+      },
+      "back": {
+        "primary": "clean",
+        "translation": "打扫",
+        "phonetic": "/kliːn/",
+        "example": "clean — 打扫"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 7，下半页词卡",
+        "excerpt": "图文词卡：clean；中文释义：打扫；音标：/kliːn/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-015-cook",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-08",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "cook",
+        "image": "./images/raz/raz-vocabulary-015-cook-front.jpg"
+      },
+      "back": {
+        "primary": "cook",
+        "translation": "厨师",
+        "phonetic": "/kʊk/",
+        "example": "cook — 厨师"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 8，上半页词卡",
+        "excerpt": "图文词卡：cook；中文释义：厨师；音标：/kʊk/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-016-farmer",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-08",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "farmer",
+        "image": "./images/raz/raz-vocabulary-016-farmer-front.jpg"
+      },
+      "back": {
+        "primary": "farmer",
+        "translation": "农民",
+        "phonetic": "/ˈfɑːmə(r)/",
+        "example": "farmer — 农民"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 8，下半页词卡",
+        "excerpt": "图文词卡：farmer；中文释义：农民；音标：/ˈfɑːmə(r)/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-017-help-at-home",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-09",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "help at home",
+        "image": "./images/raz/raz-vocabulary-017-help-at-home-front.jpg"
+      },
+      "back": {
+        "primary": "help at home",
+        "translation": "在家帮忙",
+        "phonetic": "/help æt həʊm/",
+        "example": "help at home — 在家帮忙"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 9，上半页词卡",
+        "excerpt": "图文词卡：help at home；中文释义：在家帮忙；音标：/help æt həʊm/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-018-make-chairs",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-09",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "make chairs",
+        "image": "./images/raz/raz-vocabulary-018-make-chairs-front.jpg"
+      },
+      "back": {
+        "primary": "make chairs",
+        "translation": "制作椅子",
+        "phonetic": "/meɪk tʃeəz/",
+        "example": "make chairs — 制作椅子"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 9，下半页词卡",
+        "excerpt": "图文词卡：make chairs；中文释义：制作椅子；音标：/meɪk tʃeəz/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-019-look-after",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-10",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "look after",
+        "image": "./images/raz/raz-vocabulary-019-look-after-front.jpg"
+      },
+      "back": {
+        "primary": "look after",
+        "translation": "照顾",
+        "phonetic": "/lʊk ˈɑːftə(r)/",
+        "example": "look after — 照顾"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 10，上半页词卡",
+        "excerpt": "图文词卡：look after；中文释义：照顾；音标：/lʊk ˈɑːftə(r)/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-020-teach-chinese",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-10",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "teach Chinese",
+        "image": "./images/raz/raz-vocabulary-020-teach-chinese-front.jpg"
+      },
+      "back": {
+        "primary": "teach Chinese",
+        "translation": "教语文",
+        "phonetic": "/tiːtʃ ˌtʃaɪˈniːz/",
+        "example": "teach Chinese — 教语文"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 10，下半页词卡",
+        "excerpt": "图文词卡：teach Chinese；中文释义：教语文；音标：/tiːtʃ ˌtʃaɪˈniːz/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-021-busy-and-tired",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-11",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "busy and tired",
+        "image": "./images/raz/raz-vocabulary-021-busy-and-tired-front.jpg"
+      },
+      "back": {
+        "primary": "busy and tired",
+        "translation": "又忙又累",
+        "phonetic": "/ˈbɪzi ænd ˈtaɪəd/",
+        "example": "busy and tired — 又忙又累"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 11，上半页词卡",
+        "excerpt": "图文词卡：busy and tired；中文释义：又忙又累；音标：/ˈbɪzi ænd ˈtaɪəd/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-022-make-a-gift",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-11",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "make a gift",
+        "image": "./images/raz/raz-vocabulary-022-make-a-gift-front.jpg"
+      },
+      "back": {
+        "primary": "make a gift",
+        "translation": "制作礼物",
+        "phonetic": "/meɪk ə ɡɪft/",
+        "example": "make a gift — 制作礼物"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 11，下半页词卡",
+        "excerpt": "图文词卡：make a gift；中文释义：制作礼物；音标：/meɪk ə ɡɪft/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-023-clean-the-room",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-12",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "clean the room",
+        "image": "./images/raz/raz-vocabulary-023-clean-the-room-front.jpg"
+      },
+      "back": {
+        "primary": "clean the room",
+        "translation": "打扫房间",
+        "phonetic": "/kliːn ðə ruːm/",
+        "example": "clean the room — 打扫房间"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 12，上半页词卡",
+        "excerpt": "图文词卡：clean the room；中文释义：打扫房间；音标：/kliːn ðə ruːm/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-024-the-double-ninth-festival",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-12",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "The Double Ninth Festival",
+        "image": "./images/raz/raz-vocabulary-024-the-double-ninth-festival-front.jpg"
+      },
+      "back": {
+        "primary": "The Double Ninth Festival",
+        "translation": "重阳节",
+        "phonetic": "/ðə ˌdʌbl naɪnθ ˈfestɪvl/",
+        "example": "The Double Ninth Festival — 重阳节"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 12，下半页词卡",
+        "excerpt": "图文词卡：The Double Ninth Festival；中文释义：重阳节；音标：/ðə ˌdʌbl naɪnθ ˈfestɪvl/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-025-teacher",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-13",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "teacher",
+        "image": "./images/raz/raz-vocabulary-025-teacher-front.jpg"
+      },
+      "back": {
+        "primary": "teacher",
+        "translation": "老师",
+        "phonetic": "/ˈtiːtʃə(r)/",
+        "example": "teacher — 老师"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 13，上半页词卡",
+        "excerpt": "图文词卡：teacher；中文释义：老师；音标：/ˈtiːtʃə(r)/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-026-lunch",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-13",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "lunch",
+        "image": "./images/raz/raz-vocabulary-026-lunch-front.jpg"
+      },
+      "back": {
+        "primary": "lunch",
+        "translation": "午餐",
+        "phonetic": "/lʌntʃ/",
+        "example": "lunch — 午餐"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 13，下半页词卡",
+        "excerpt": "图文词卡：lunch；中文释义：午餐；音标：/lʌntʃ/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-027-chair",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-14",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "chair",
+        "image": "./images/raz/raz-vocabulary-027-chair-front.jpg"
+      },
+      "back": {
+        "primary": "chair",
+        "translation": "椅子",
+        "phonetic": "/tʃeə(r)/",
+        "example": "chair — 椅子"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 14，上半页词卡",
+        "excerpt": "图文词卡：chair；中文释义：椅子；音标：/tʃeə(r)/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-028-peach",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-14",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "peach",
+        "image": "./images/raz/raz-vocabulary-028-peach-front.jpg"
+      },
+      "back": {
+        "primary": "peach",
+        "translation": "桃子",
+        "phonetic": "/piːtʃ/",
+        "example": "peach — 桃子"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 14，下半页词卡",
+        "excerpt": "图文词卡：peach；中文释义：桃子；音标：/piːtʃ/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-029-kitchen",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-15",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "kitchen",
+        "image": "./images/raz/raz-vocabulary-029-kitchen-front.jpg"
+      },
+      "back": {
+        "primary": "kitchen",
+        "translation": "厨房",
+        "phonetic": "/ˈkɪtʃɪn/",
+        "example": "kitchen — 厨房"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 15，上半页词卡",
+        "excerpt": "图文词卡：kitchen；中文释义：厨房；音标：/ˈkɪtʃɪn/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-030-chinese",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-15",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "Chinese",
+        "image": "./images/raz/raz-vocabulary-030-chinese-front.jpg"
+      },
+      "back": {
+        "primary": "Chinese",
+        "translation": "中文",
+        "phonetic": "/ˌtʃaɪˈniːz/",
+        "example": "Chinese — 中文"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 15，下半页词卡",
+        "excerpt": "图文词卡：Chinese；中文释义：中文；音标：/ˌtʃaɪˈniːz/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    },
+    {
+      "id": "raz-vocabulary-032-child",
+      "type": "image-vocabulary",
+      "status": "published",
+      "categoryId": "raz-vocabulary",
+      "sectionId": "page-16",
+      "front": {
+        "prompt": "看图并朗读英文单词或短语",
+        "primary": "child",
+        "image": "./images/raz/raz-vocabulary-032-child-front.jpg"
+      },
+      "back": {
+        "primary": "child",
+        "translation": "小孩",
+        "phonetic": "/tʃaɪld/",
+        "example": "child — 小孩"
+      },
+      "tags": [
+        "raz",
+        "英语词汇",
+        "图像词卡",
+        "小学英语"
+      ],
+      "difficulty": 1,
+      "source": {
+        "type": "pdf",
+        "documentId": "RAZ词汇.pdf",
+        "locator": "p. 16，下半页词卡",
+        "excerpt": "图文词卡：child；中文释义：小孩；音标：/tʃaɪld/。"
+      },
+      "generation": {
+        "method": "manual-visual-transcription",
+        "model": null,
+        "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+        "reviewedAt": "2026-09-08T12:41:29.201406+00:00"
+      }
+    }
+  ]
+}

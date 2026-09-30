@@ -1,8 +1,16 @@
 {
   "catalogVersion": "1.0",
+  "defaultDeckId": "cfa-level-1",
   "decks": [
     {
+      "id": "raz-picture-vocabulary",
+      "title": "RAZ 图像英语词汇卡",
+      "path": "./decks/raz-picture-vocabulary/deck.json",
+      "featured": true
+    },
+    {
       "id": "cfa-level-1",
+      "title": "CFA 一级知识闪卡",
       "path": "./decks/cfa-level-1/deck.json",
       "featured": true
     }
