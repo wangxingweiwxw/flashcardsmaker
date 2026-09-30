@@ -1,0 +1,12 @@
+{
+  "format": "kdf-package/1.0",
+  "deckId": "deck-c13f18c1",
+  "deckVersion": "0.1.0-draft",
+  "generatedAt": "2026-09-08T06:42:23.561050+00:00",
+  "files": [
+    "deck.json",
+    "anki.tsv",
+    "validation.json"
+  ],
+  "deckSha256": "036868aa4556da559c7be12741e72ee4fc350a1184e53e28306420189f8a8e62"
+}

@@ -1,0 +1,12 @@
+{
+  "valid": true,
+  "errors": [],
+  "warnings": [],
+  "cardCount": 30,
+  "publishedCount": 30,
+  "deduplicatedTerms": [
+    "room",
+    "peach"
+  ],
+  "assetStrategy": "每张图像词卡使用内嵌 JPEG data URI，导入浏览器后不依赖外部图片路径。"
+}

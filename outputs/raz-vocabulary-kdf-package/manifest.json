@@ -1,0 +1,17 @@
+{
+  "format": "kdf-package/1.0",
+  "deckId": "raz-picture-vocabulary",
+  "deckVersion": "1.3.0",
+  "generatedAt": "2026-09-08T12:41:29.201406+00:00",
+  "source": {
+    "fileName": "RAZ词汇.pdf",
+    "sha256": "dd42f76f106b95b01e080cbcecd3b428cedb156c259dcf631ced9f14fd051908",
+    "pages": 16
+  },
+  "files": [
+    "deck.json",
+    "anki.tsv",
+    "validation.json",
+    "manifest.json"
+  ]
+}
