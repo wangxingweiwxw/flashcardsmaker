@@ -1,5 +1,10 @@
 desktop.ini
 Thumbs.db
+node_modules/
+.wrangler/
+__pycache__/
+outputs/github-deploy/
+outputs/cloudflare-tooling/
 
 # Copyrighted CFA source material — kept local only, never pushed to the public repo
 source/

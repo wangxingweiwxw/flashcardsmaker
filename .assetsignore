@@ -1,0 +1,25 @@
+# Ship runtime assets only; never publish Git history, tooling or build outputs.
+.git/
+.github/
+.claude/
+.workbuddy/
+.wrangler/
+node_modules/
+outputs/
+tools/
+schemas/
+skills/
+vendor/
+_minitool_pack/
+dist/
+source/
+*.zip
+*.md
+*.pdf
+*.py
+*.pyc
+*.toml
+*.jsonc
+.gitignore
+.assetsignore
+word-memory-app-v2.0.html

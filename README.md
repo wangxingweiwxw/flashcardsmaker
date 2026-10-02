@@ -139,6 +139,21 @@ PDF 自动产出的卡默认均为 `draft`，并保留 `source.locator` 页码�
 
 ## 目录说明
 
+## Cloudflare 部署
+
+正式地址：<https://cards.chipai.cc>。GitHub `main` 分支连接 Cloudflare Workers Builds，服务名为 `flashcardsmaker`；仓库中的 `wrangler.jsonc` 显式指定静态资源目录。部署命令为 `npx wrangler deploy`，无需构建或服务端进程。
+
+`.assetsignore` 排除 Git 历史、开发工具、原始导入网页、文档、压缩包及输出目录；保留应用入口、运行脚本、KDF 数据、图片和完整 `audio/` 目录。音频无需联网重新生成，也不应在部署期间运行下载脚本。
+
+手动检查及发布（需已有 Cloudflare 授权）：
+
+```bash
+npx wrangler deploy --dry-run
+npx wrangler deploy
+```
+
+### 项目目录
+
 | 路径 | 用途 |
 |---|---|
 | `index.html` / `app.js` | 通用 KDF 学习器 |
