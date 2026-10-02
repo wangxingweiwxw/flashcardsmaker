@@ -19,6 +19,62 @@ var COLORS = ["#0f6e56", "#b07514", "#b6442a", "#6b3d6e", "#1f5d99", "#2f8f4f", 
 var BATCH = 40;
 var renderLimit = BATCH;
 var searchTimer = null;
+var activePronunciation = null;
+
+function stopPronunciation() {
+  var current = activePronunciation;
+  if (!current) return;
+  activePronunciation = null;
+  clearTimeout(current.timer);
+  current.audio.onended = current.audio.onerror = current.audio.onplaying = null;
+  current.audio.pause();
+  current.audio.removeAttribute("src");
+  current.audio.load();
+  current.button.classList.remove("playing");
+  current.button.setAttribute("aria-pressed", "false");
+  current.button.textContent = "▶ " + (current.button.getAttribute("data-audio-label") || "播放发音");
+}
+
+function playPronunciation(src, button) {
+  var sameButton = activePronunciation && activePronunciation.button === button;
+  stopPronunciation();
+  if (sameButton) return;
+  if (typeof Audio === "undefined") {
+    notify("当前环境不支持音频播放", "error");
+    return;
+  }
+  // One player, created only on a user click. Never preload the entire deck.
+  var current = { audio: new Audio(), button: button, timer: null };
+  activePronunciation = current;
+  button.textContent = "■ 停止发音";
+  button.classList.add("playing");
+  button.setAttribute("aria-pressed", "true");
+  function failed(error) {
+    if (activePronunciation !== current) return;
+    stopPronunciation();
+    notify(error && error.name === "NotAllowedError"
+      ? "播放被浏览器阻止，请再次点击发音按钮"
+      : "音频无法播放，请检查音频文件是否完整并重试", "error");
+  }
+  current.audio.onended = function() {
+    if (activePronunciation === current) stopPronunciation();
+  };
+  current.audio.onerror = failed;
+  current.audio.onplaying = function() { clearTimeout(current.timer); };
+  current.timer = setTimeout(failed, 15000);
+  try {
+    current.audio.src = src;
+    var playback = current.audio.play();
+    if (playback && typeof playback.catch === "function") playback.catch(failed);
+  } catch (error) { failed(error); }
+}
+
+function audioButton(side) {
+  if (!side || !side.audio) return "";
+  var label = side.audioLabel || "播放发音";
+  return "<button type=\"button\" class=\"audio-button\" data-stop data-audio=\"" + esc(side.audio) +
+    "\" data-audio-label=\"" + esc(label) + "\" aria-label=\"" + esc(label + " " + (side.primary || "")) + "\" aria-pressed=\"false\">▶ " + esc(label) + "</button>";
+}
 
 var app = {
   catalog: { decks: [] },
@@ -256,6 +312,7 @@ function migrateLegacyCfaProfile() {
 }
 
 function loadDeck(deckId) {
+  stopPronunciation();
   return getDeckPayload(deckId).then(function(payload) {
     var result = validateDeck(payload);
     if (!result.valid) throw new Error(result.errors.join("；"));
@@ -368,7 +425,9 @@ function filteredCards() {
     if (app.ui.status === "starred" && !state.priority) return false;
     if (app.ui.status === "noted" && !(state.note || "").trim()) return false;
     if (!query) return true;
-    var haystack = [frontText(card), frontTranslation(card), backText(card), backTranslation(card)].concat(card.tags || []);
+    var back = card.back || {};
+    var haystack = [frontText(card), frontTranslation(card), backText(card), backTranslation(card),
+      back.phonetic, back.homophone, back.explanation, back.example].concat(card.tags || []);
     return haystack.join(" ").toLowerCase().indexOf(query) !== -1;
   });
 }
@@ -383,18 +442,28 @@ function renderCard(card, number) {
     ? "<img class=\"card-image\" src=\"" + esc(card.front.image) + "\" alt=\"" + esc(frontText(card)) + "\">"
     : "";
   var frontExtra = frontTranslation(card) ? "<div class=\"translation\">" + fmtMath(esc(frontTranslation(card))) + "</div>" : "";
+  var frontPhonetic = card.front && card.front.phonetic ? "<div class=\"translation phonetic\">" + esc(card.front.phonetic) + "</div>" : "";
   var phonetic = backPhonetic(card) ? "<div class=\"translation\">" + esc(backPhonetic(card)) + "</div>" : "";
   var backExtra = backTranslation(card) ? "<div class=\"translation answer-translation\">" + fmtMath(esc(backTranslation(card))) + "</div>" : "";
   var example = card.back && card.back.example ? "<div class=\"example\">" + esc(card.back.example) + "</div>" : "";
+  var homophone = card.back && card.back.homophone ? "<div class=\"mnemonic\"><span class=\"detail-label\">谐音提示</span>" + esc(card.back.homophone) + "</div>" : "";
+  var explanation = card.back && card.back.explanation && card.back.explanation !== backTranslation(card)
+    ? "<div class=\"example mnemonic\"><span class=\"detail-label\">" + (homophone ? "记忆句" : "解释") + "</span>" + esc(card.back.explanation) + "</div>" : "";
   var element = document.createElement("article");
   element.className = "card" + (app.allFlipped ? " flipped" : "");
   element.innerHTML =
-    "<div class=\"face front\"><div class=\"meta\"><span class=\"tag\" style=\"background:" + categoryColor(card.categoryId) + "\">" + esc(categoryLabel(category)) + "</span><span class=\"num\">#" + number + "</span><span class=\"stars\">" + stars + "</span><span class=\"type\">" + esc(card.type) + "</span></div><div class=\"term\">" + fmtMath(esc(frontText(card))) + "</div>" + frontExtra + image + "<div class=\"hint\">点击翻转查看答案</div></div>" +
-    "<div class=\"face back\"><div class=\"meta\"><span class=\"tag\" style=\"background:" + categoryColor(card.categoryId) + "\">" + esc(categoryLabel(category)) + "</span><span class=\"type\">" + esc(card.type) + "</span></div><div class=\"definition\">" + fmtMath(esc(backText(card))) + "</div>" + phonetic + backExtra + example +
+    "<div class=\"face front\"><div class=\"meta\"><span class=\"tag\" style=\"background:" + categoryColor(card.categoryId) + "\">" + esc(categoryLabel(category)) + "</span><span class=\"num\">#" + number + "</span><span class=\"stars\">" + stars + "</span><span class=\"type\">" + esc(card.type) + "</span></div><div class=\"term\">" + fmtMath(esc(frontText(card))) + "</div>" + frontExtra + frontPhonetic + audioButton(card.front) + image + "<div class=\"hint\">点击翻转查看答案</div></div>" +
+    "<div class=\"face back\"><div class=\"meta\"><span class=\"tag\" style=\"background:" + categoryColor(card.categoryId) + "\">" + esc(categoryLabel(category)) + "</span><span class=\"type\">" + esc(card.type) + "</span></div><div class=\"definition\">" + fmtMath(esc(backText(card))) + "</div>" + phonetic + backExtra + homophone + explanation + example + audioButton(card.back) +
     "<div class=\"actions\" data-stop><button class=\"sbtn" + (state.status === "known" ? " on known" : "") + "\" data-status=\"known\">已掌握</button><button class=\"sbtn" + (state.status === "learning" ? " on learning" : "") + "\" data-status=\"learning\">学习中</button></div>" +
     "<label class=\"note-wrap\" data-stop><span>笔记</span><textarea class=\"note\" placeholder=\"添加本卡笔记…\">" + esc(state.note || "") + "</textarea></label></div>";
   element.addEventListener("click", function(event) {
     if (!event.target.closest("[data-stop]") && !event.target.closest(".star")) element.classList.toggle("flipped");
+  });
+  element.querySelectorAll("[data-audio]").forEach(function(button) {
+    button.addEventListener("click", function(event) {
+      event.stopPropagation();
+      playPronunciation(button.getAttribute("data-audio"), button);
+    });
   });
   element.querySelectorAll(".star").forEach(function(button) {
     button.addEventListener("click", function(event) {
@@ -436,6 +505,7 @@ function updateStats() {
 }
 
 function render() {
+  stopPronunciation();
   var list = filteredCards();
   renderLimit = Math.min(Math.max(renderLimit, BATCH), list.length);
   var deck = $("#deck");
@@ -535,7 +605,7 @@ function importDeckFromText(raw) {
 
 function ankiSide(side) {
   if (!side) return "";
-  return [side.prompt, side.primary, side.translation, side.definition, side.answer, side.explanation]
+  return [side.prompt, side.primary, side.phonetic, side.translation, side.definition, side.answer, side.homophone, side.explanation, side.example]
     .filter(Boolean)
     .map(function(value) { return String(value).replace(/\r?\n/g, "<br>"); })
     .join("<br>");
@@ -595,6 +665,10 @@ function deleteImportedDeck(deckId) {
 }
 
 function bindEvents() {
+  document.addEventListener("visibilitychange", function() {
+    if (document.hidden) stopPronunciation();
+  });
+  window.addEventListener("pagehide", stopPronunciation);
   $("#deckPicker").addEventListener("change", function(event) {
     switchDeck(event.target.value);
     if (window.matchMedia("(max-width: 760px)").matches) setSettingsOpen(false);

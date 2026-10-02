@@ -65,6 +65,34 @@ http://127.0.0.1:8765
 
 ## 新增一个内置卡组
 
+### 英语谐音记忆词卡（word-memory-v2）
+
+已将 `word-memory-app-v2.0.html` 的 **3,980 个实际词条**完整转换为内置 KDF 卡组，按 A–Z 分类。正面显示英文、音标和发音按钮；背面包含中文释义、谐音提示、记忆句及发音按钮。可搜索释义、谐音和记忆句，学习进度按卡组隔离。原网页标题中的“4000词”为约数，原始内容未删减或改写。
+
+直接打开 `index.html?deck=word-memory-v2`，或从卡组下拉框选择“英语谐音记忆词卡”。支持 HTTP 服务和本地 `file://` 打开。
+
+音频处理：
+
+- 原 HTML 没有内嵌录音，使用有道 `dictvoice?type=1` 接口。构建时下载为 `audio/word-memory-v2/*.mp3`，运行时不请求外部接口。
+- 接口返回的部分文件实际为 WAV；按文件内容识别并转换为真正的 MP3。缩写中的撇号、连字符和短语空格保留后进行 URL 编码。
+- 3,971 个词使用原英式音频；`xolo`、`vacatur` 的英式接口报错，改用有道美式音频。`xylorimba`、`urceus`、`zabar`、`upma`、`xigou`、`zoodle`、`didymum` 的两种接口均报错，使用 Windows Zira 英文合成音兜底。按钮分别标注“英式发音”“美式发音”“合成发音”；合成音不等于词典标准发音，原音标照原文保留。
+- 音频按点击加载，同一时间只播放一个；重复点击停止，切换卡组、重新渲染或离开页面会停止并释放播放器。加载失败有明确提示，可再次点击重试。
+- **移动或部署应用时必须同时携带 `audio/` 目录**，路径相对于 `index.html`。单独复制 KDF JSON 不包含音频二进制；本应用的 Anki TSV 导出也只导出文本。
+- `outputs/word-memory-audio-manifest.json` 记录每个词的来源地址、文件大小与 SHA-256，便于核对；无需将该清单放进运行页面。
+
+生成及验证：
+
+```bash
+python tools/import_word_memory.py --tts-fallback
+python tools/import_word_memory.py --offline
+python tools/validate_kdf.py decks/word-memory-v2/deck.json
+python tools/verify_word_memory.py
+```
+
+转换脚本复用已有音频及来源清单，断点重跑只下载缺失文件；`--offline` 仅使用本地资源。WAV 转换需要 FFmpeg，脚本也支持已安装的 `imageio-ffmpeg`。`--tts-fallback` 仅在词典的两种发音都失败时使用 Windows 的 Microsoft Zira Desktop；不加此参数则将失败词写入清单并停止生成。完整验证需 Playwright 和 Microsoft Edge，会核对原始字段、逐个解码 MP3，并测试播放、切换、搜索、进度保存及旧卡组。
+
+### 注册其他卡组
+
 1. 按 KDF v1 创建 `decks/<deck-id>/deck.json`。
 2. 执行校验：
 

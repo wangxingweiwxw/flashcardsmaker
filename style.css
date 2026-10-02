@@ -227,6 +227,21 @@ main { max-width: 1180px; margin: auto; padding: 6px 24px 40px; }
 .translation { margin-top: 10px; color: #236fae; font-size: 15px; overflow-wrap: break-word; word-wrap: break-word; }
 .answer-translation { padding-top: 10px; border-top: 1px dashed var(--line); }
 .example { margin-top: 14px; padding: 10px 12px; border-radius: 10px; background: var(--soft); font-size: 13px; }
+.mnemonic { margin-top: 14px; white-space: pre-wrap; overflow-wrap: break-word; word-wrap: break-word; }
+.detail-label { display: block; margin-bottom: 4px; color: var(--muted); font-size: 12px; }
+.audio-button {
+  align-self: flex-start;
+  margin-top: 14px;
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--accent);
+  font-size: 13px;
+}
+.audio-button.playing { background: var(--accent); color: #fff; }
+.audio-button:focus { outline: 2px solid var(--accent); outline-offset: 3px; }
 .hint { margin-top: auto; padding-top: 20px; color: var(--muted); font-size: 12px; }
 .card-image { display: block; max-width: 100%; max-height: 180px; object-fit: contain; margin: 16px auto 0; border-radius: 10px; }
 .actions { display: flex; margin-top: auto; padding-top: 22px; }

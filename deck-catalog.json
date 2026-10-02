@@ -13,6 +13,12 @@
       "title": "CFA 一级知识闪卡",
       "path": "./decks/cfa-level-1/deck.json",
       "featured": true
+    },
+    {
+      "id": "word-memory-v2",
+      "title": "英语谐音记忆词卡",
+      "path": "./decks/word-memory-v2/deck.json",
+      "featured": true
     }
   ]
 }

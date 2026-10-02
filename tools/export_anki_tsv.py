@@ -13,7 +13,7 @@ def clean(value: object) -> str:
 
 
 def text(side: dict) -> str:
-    ordered = ["prompt", "primary", "translation", "definition", "phonetic", "example", "answer", "explanation"]
+    ordered = ["prompt", "primary", "translation", "definition", "phonetic", "homophone", "example", "answer", "explanation"]
     values = [clean(side[key]) for key in ordered if side.get(key)]
     if not values:
         values = [clean(value) for value in side.values() if isinstance(value, str) and value]
