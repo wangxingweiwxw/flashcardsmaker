@@ -143,6 +143,10 @@ PDF 自动产出的卡默认均为 `draft`，并保留 `source.locator` 页码�
 
 ## Cloudflare 部署
 
+谐音词卡保留 A–Z 分类，并提供「五年级上册」交叉分类。依据《五年级上册 单词表.pdf》的 113 条词目，仅归类已有的 54 张词卡；不新增缺失词条、不拆分短语或改写词形。核对后的词目、页码和文件哈希保存在 `tools/data/grade-5-upper.json`。
+
+运行 `python tools/import_word_memory.py --offline` 可复现分类，并在 `outputs/grade-5-upper-matches.json` 查看匹配与未匹配明细。原卡片 ID、音频和学习记录继续复用。KDF 卡片可选字段 `categoryIds` 表示交叉分类，筛选匹配 `categoryId` 或 `categoryIds`；原 `categoryId` 仍用于卡面主分类。执行 `python tools/verify_grade_category.py` 验证手机和桌面上的分类、学习进度及音频；可加 `--url https://cards.chipai.cc` 检查部署结果。
+
 正式地址：<https://cards.chipai.cc>。GitHub `main` 分支连接 Cloudflare Workers Builds，服务名为 `flashcardsmaker`；仓库中的 `wrangler.jsonc` 显式指定静态资源目录。部署命令为 `npx wrangler deploy`，无需构建或服务端进程。
 
 `.assetsignore` 排除 Git 历史、开发工具、原始导入网页、文档、压缩包及输出目录；保留应用入口、运行脚本、KDF 数据、图片和完整 `audio/` 目录。音频无需联网重新生成，也不应在部署期间运行下载脚本。

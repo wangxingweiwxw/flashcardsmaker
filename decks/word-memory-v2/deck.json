@@ -3,7 +3,7 @@
   "deck": {
     "id": "word-memory-v2",
     "title": "英语谐音记忆词卡",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "defaultCardType": "bilingual-basic",
     "description": "3,980 个词条 · 音标、中文释义、谐音与记忆句 · 点击播放离线发音",
     "locale": "zh-CN",
@@ -18,186 +18,193 @@
   },
   "categories": [
     {
+      "id": "grade-5-upper",
+      "name": "五年级上册",
+      "label": "五年级上册",
+      "parentId": null,
+      "sortOrder": 0
+    },
+    {
       "id": "letter-a",
       "name": "A",
       "label": "A 开头",
       "parentId": null,
-      "sortOrder": 0
+      "sortOrder": 1
     },
     {
       "id": "letter-b",
       "name": "B",
       "label": "B 开头",
       "parentId": null,
-      "sortOrder": 1
+      "sortOrder": 2
     },
     {
       "id": "letter-c",
       "name": "C",
       "label": "C 开头",
       "parentId": null,
-      "sortOrder": 2
+      "sortOrder": 3
     },
     {
       "id": "letter-d",
       "name": "D",
       "label": "D 开头",
       "parentId": null,
-      "sortOrder": 3
+      "sortOrder": 4
     },
     {
       "id": "letter-e",
       "name": "E",
       "label": "E 开头",
       "parentId": null,
-      "sortOrder": 4
+      "sortOrder": 5
     },
     {
       "id": "letter-f",
       "name": "F",
       "label": "F 开头",
       "parentId": null,
-      "sortOrder": 5
+      "sortOrder": 6
     },
     {
       "id": "letter-g",
       "name": "G",
       "label": "G 开头",
       "parentId": null,
-      "sortOrder": 6
+      "sortOrder": 7
     },
     {
       "id": "letter-h",
       "name": "H",
       "label": "H 开头",
       "parentId": null,
-      "sortOrder": 7
+      "sortOrder": 8
     },
     {
       "id": "letter-i",
       "name": "I",
       "label": "I 开头",
       "parentId": null,
-      "sortOrder": 8
+      "sortOrder": 9
     },
     {
       "id": "letter-j",
       "name": "J",
       "label": "J 开头",
       "parentId": null,
-      "sortOrder": 9
+      "sortOrder": 10
     },
     {
       "id": "letter-k",
       "name": "K",
       "label": "K 开头",
       "parentId": null,
-      "sortOrder": 10
+      "sortOrder": 11
     },
     {
       "id": "letter-l",
       "name": "L",
       "label": "L 开头",
       "parentId": null,
-      "sortOrder": 11
+      "sortOrder": 12
     },
     {
       "id": "letter-m",
       "name": "M",
       "label": "M 开头",
       "parentId": null,
-      "sortOrder": 12
+      "sortOrder": 13
     },
     {
       "id": "letter-n",
       "name": "N",
       "label": "N 开头",
       "parentId": null,
-      "sortOrder": 13
+      "sortOrder": 14
     },
     {
       "id": "letter-o",
       "name": "O",
       "label": "O 开头",
       "parentId": null,
-      "sortOrder": 14
+      "sortOrder": 15
     },
     {
       "id": "letter-p",
       "name": "P",
       "label": "P 开头",
       "parentId": null,
-      "sortOrder": 15
+      "sortOrder": 16
     },
     {
       "id": "letter-q",
       "name": "Q",
       "label": "Q 开头",
       "parentId": null,
-      "sortOrder": 16
+      "sortOrder": 17
     },
     {
       "id": "letter-r",
       "name": "R",
       "label": "R 开头",
       "parentId": null,
-      "sortOrder": 17
+      "sortOrder": 18
     },
     {
       "id": "letter-s",
       "name": "S",
       "label": "S 开头",
       "parentId": null,
-      "sortOrder": 18
+      "sortOrder": 19
     },
     {
       "id": "letter-t",
       "name": "T",
       "label": "T 开头",
       "parentId": null,
-      "sortOrder": 19
+      "sortOrder": 20
     },
     {
       "id": "letter-u",
       "name": "U",
       "label": "U 开头",
       "parentId": null,
-      "sortOrder": 20
+      "sortOrder": 21
     },
     {
       "id": "letter-v",
       "name": "V",
       "label": "V 开头",
       "parentId": null,
-      "sortOrder": 21
+      "sortOrder": 22
     },
     {
       "id": "letter-w",
       "name": "W",
       "label": "W 开头",
       "parentId": null,
-      "sortOrder": 22
+      "sortOrder": 23
     },
     {
       "id": "letter-x",
       "name": "X",
       "label": "X 开头",
       "parentId": null,
-      "sortOrder": 23
+      "sortOrder": 24
     },
     {
       "id": "letter-y",
       "name": "Y",
       "label": "Y 开头",
       "parentId": null,
-      "sortOrder": 24
+      "sortOrder": 25
     },
     {
       "id": "letter-z",
       "name": "Z",
       "label": "Z 开头",
       "parentId": null,
-      "sortOrder": 25
+      "sortOrder": 26
     }
   ],
   "cards": [
@@ -1057,7 +1064,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-a",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-0256",
@@ -10132,7 +10143,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-b",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-0176",
@@ -18184,7 +18199,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-c",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-2977",
@@ -19669,7 +19688,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-c",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-0384",
@@ -21913,7 +21936,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-c",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-0437",
@@ -22540,7 +22567,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-c",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-0451",
@@ -23431,7 +23462,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-c",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-0467",
@@ -25906,7 +25941,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-d",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-0537",
@@ -28546,7 +28585,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-d",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-0599",
@@ -33463,7 +33506,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-e",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-0769",
@@ -35575,7 +35622,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-e",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-2602",
@@ -36202,7 +36253,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-e",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-0732",
@@ -36994,7 +37049,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-f",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-0789",
@@ -38182,7 +38241,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-f",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-0810",
@@ -41416,7 +41479,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-f",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-0876",
@@ -46894,7 +46961,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-h",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-1044",
@@ -51745,7 +51816,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-h",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-3226",
@@ -56101,7 +56176,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-i",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-1202",
@@ -57982,7 +58061,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-j",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-1228",
@@ -59632,7 +59715,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-k",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-1288",
@@ -65836,7 +65923,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-l",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-1355",
@@ -69895,7 +69986,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-m",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-1421",
@@ -71710,7 +71805,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-m",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-1452",
@@ -72304,7 +72403,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-m",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-1463",
@@ -77551,7 +77654,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-n",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-1678",
@@ -81511,7 +81618,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-p",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-1703",
@@ -81775,7 +81886,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-p",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-1706",
@@ -82798,7 +82913,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-p",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-2633",
@@ -86791,7 +86910,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-p",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-2999",
@@ -86890,7 +87013,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-p",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-2707",
@@ -90586,7 +90713,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-r",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-1747",
@@ -91312,7 +91443,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-r",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-2857",
@@ -92929,7 +93064,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-r",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-2869",
@@ -94777,7 +94916,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-r",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-1811",
@@ -95074,7 +95217,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-r",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-1817",
@@ -97054,7 +97201,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-s",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-3681",
@@ -101608,7 +101759,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-s",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-1956",
@@ -102565,7 +102720,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-s",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-1977",
@@ -103390,7 +103549,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-s",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-1998",
@@ -104149,7 +104312,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-s",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-2015",
@@ -104281,7 +104448,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-s",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-2017",
@@ -106162,7 +106333,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-t",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-2095",
@@ -107119,7 +107294,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-t",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-2047",
@@ -107218,7 +107397,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-t",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-3559",
@@ -108769,7 +108952,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-t",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-2051",
@@ -110089,7 +110276,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-t",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-2122",
@@ -110683,7 +110874,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-t",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-2054",
@@ -111475,7 +111670,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-t",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-2175",
@@ -116986,7 +117185,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-u",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-2246",
@@ -119296,7 +119499,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-v",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-3684",
@@ -124246,7 +124453,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-w",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-3199",
@@ -124345,7 +124556,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-w",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-2467",
@@ -125599,7 +125814,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-w",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-2497",
@@ -127315,7 +127534,11 @@
       },
       "generation": {
         "method": "import"
-      }
+      },
+      "categoryIds": [
+        "letter-w",
+        "grade-5-upper"
+      ]
     },
     {
       "id": "word-memory-2530",

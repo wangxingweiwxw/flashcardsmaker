@@ -87,6 +87,12 @@ def validate(deck_path: Path) -> tuple[list[str], list[str]]:
             published += 1
         if card.get("categoryId") and card["categoryId"] not in category_ids:
             errors.append(f"{prefix}.categoryId 指向不存在的分类：{card['categoryId']}")
+        if "categoryIds" in card:
+            memberships = card["categoryIds"]
+            if (not isinstance(memberships, list)
+                    or any(not isinstance(value, str) or value not in category_ids for value in memberships)
+                    or len(set(memberships)) != len(memberships)):
+                errors.append(f"{prefix}.categoryIds 必须是有效且不重复的分类 ID 数组")
         if card.get("sectionId") and card["sectionId"] not in category_ids:
             errors.append(f"{prefix}.sectionId 指向不存在的分类：{card['sectionId']}")
         front, back = card.get("front"), card.get("back")

@@ -78,6 +78,7 @@
         "type": { "type": "string", "enum": ["basic", "bilingual-basic", "cloze", "qa", "image-vocabulary", "formula", "multiple-choice"] },
         "status": { "type": "string", "enum": ["draft", "validated", "reviewed", "published", "archived"] },
         "categoryId": { "type": "string" },
+        "categoryIds": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true, "description": "Optional overlapping categories; categoryId remains the primary display category." },
         "sectionId": { "type": "string" },
         "front": { "$ref": "#/$defs/cardSide" },
         "back": { "$ref": "#/$defs/cardSide" },
