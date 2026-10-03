@@ -25,6 +25,12 @@ window.__KDF_CATALOG__ = {
       "title": "KET 词汇卡组（中英＋音标）",
       "script": "./data/ket-vocabulary-1624.js?v=1.0.0",
       "featured": true
+    },
+    {
+      "id": "junior-themed-vocabulary",
+      "title": "初中主题词汇（图解版）",
+      "script": "./data/junior-themed-vocabulary.js?v=1.0.0",
+      "featured": true
     }
   ]
 };

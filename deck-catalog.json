@@ -25,6 +25,12 @@
       "title": "KET 词汇卡组（中英＋音标）",
       "path": "./decks/ket-vocabulary-1624/deck.json",
       "featured": true
+    },
+    {
+      "id": "junior-themed-vocabulary",
+      "title": "初中主题词汇（图解版）",
+      "path": "./decks/junior-themed-vocabulary/deck.json",
+      "featured": true
     }
   ]
 }
