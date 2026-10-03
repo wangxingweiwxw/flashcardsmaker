@@ -4,6 +4,7 @@
 Requires Playwright with Microsoft Edge and ffmpeg (or imageio-ffmpeg).
 """
 from concurrent.futures import ThreadPoolExecutor
+import argparse
 import hashlib
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import json
@@ -16,7 +17,7 @@ from import_word_memory import ROOT, DECK_ID, read_words, is_mp3
 from validate_kdf import validate
 
 
-def verify_data():
+def verify_data(decode_audio=True):
     path = ROOT / "decks" / DECK_ID / "deck.json"
     errors, warnings = validate(path)
     assert not errors and not warnings, (errors, warnings)
@@ -25,7 +26,12 @@ def verify_data():
     assert len(deck["cards"]) == len(words) == 3980
     manifest = json.loads((ROOT / "outputs/word-memory-audio-manifest.json").read_text(encoding="utf-8"))
     assert len(manifest["assets"]) == len(words)
-    for card, word, asset in zip(deck["cards"], words, manifest["assets"]):
+    ordered_words = [card["front"]["primary"].casefold() for card in deck["cards"]]
+    assert ordered_words == sorted(ordered_words)
+    by_id = {card["id"]: card for card in deck["cards"]}
+    assert len(by_id) == len(words)
+    for index, (word, asset) in enumerate(zip(words, manifest["assets"]), 1):
+        card = by_id[f"word-memory-{index:04d}"]
         assert card["front"]["primary"] == card["back"]["primary"] == word["word"]
         assert card["back"]["translation"] == word["meaning"]
         assert card["front"]["phonetic"] == card["back"]["phonetic"] == word["pronunciation"]
@@ -35,6 +41,9 @@ def verify_data():
         assert card["front"]["audio"] == card["back"]["audio"] == "./" + asset["file"]
         data = (ROOT / asset["file"]).read_bytes()
         assert is_mp3(data) and hashlib.sha256(data).hexdigest() == asset["sha256"]
+    if not decode_audio:
+        print("PASS: A-Z order, all 3,980 original IDs, fields and audio hashes preserved", flush=True)
+        return
     ffmpeg = shutil.which("ffmpeg")
     if not ffmpeg:
         import imageio_ffmpeg
@@ -52,6 +61,9 @@ def verify_data():
 
 def verify_browser():
     from playwright.sync_api import sync_playwright
+
+    def wait_render(page, count):
+        page.wait_for_function("count => document.querySelector('#deck').getAttribute('aria-busy') === 'false' && document.querySelectorAll('.card').length === count", arg=count)
 
     class Handler(SimpleHTTPRequestHandler):
         def __init__(self, *args, **kwargs):
@@ -82,12 +94,19 @@ def verify_browser():
             context.route("**/*", offline_only)
             page.goto(url)
             page.wait_for_function("app.cards.length === 1614")
+            wait_render(page, 1614)
+            page.evaluate("window.renderTicks = 0; window.renderTickTimer = setInterval(function() { renderTicks++; }, 16)")
             page.select_option("#deckPicker", DECK_ID)
             page.wait_for_function("app.cards.length === 3980")
-            assert page.locator(".card").count() == 40
+            wait_render(page, 3980)
+            assert page.evaluate("clearInterval(renderTickTimer); renderTicks >= 3"), "Automatic rendering must yield to mobile input"
+            assert page.locator("#loadMore").count() == 0
+            desktop_ids = page.locator(".card").evaluate_all("cards => cards.map(c => c.dataset.cardId)")
+            assert len(set(desktop_ids)) == 3980
+            assert page.locator(".card").nth(100).locator(".front .term").inner_text().lower().startswith("a")
+            assert page.locator(".card").nth(101).locator(".front .term").inner_text().lower().startswith("a")
             assert page.locator("#deckPicker option").count() == 3
             assert not media, "Audio should not preload on deck load"
-            assert page.locator(".card").first.locator(".front .term").inner_text() == "action"
 
             first_audio = page.locator(".front .audio-button").first
             first_audio.click()
@@ -106,6 +125,8 @@ def verify_browser():
             page.locator(".front .audio-button").nth(1).click()
             assert page.evaluate("activePronunciation === null")
 
+            page.fill("#search", "行动如神")
+            wait_render(page, 1)
             page.locator(".card .front .term").first.click()
             assert "艾克神" in page.locator(".card").first.locator(".back").inner_text()
             assert "行动如神，一出手就成功" in page.locator(".card").first.locator(".back").inner_text()
@@ -113,17 +134,33 @@ def verify_browser():
             assert page.locator("#known").inner_text() == "已掌握 1"
             page.reload()
             page.wait_for_function("app.cards.length === 3980")
+            wait_render(page, 1)
             assert page.locator("#known").inner_text() == "已掌握 1"
 
             page.fill("#search", "行动如神")
             page.wait_for_function("document.querySelectorAll('.card').length === 1")
             page.fill("#search", "")
-            page.wait_for_function("document.querySelectorAll('.card').length === 40")
+            wait_render(page, 3980)
             page.select_option("#filterCategory", "letter-z")
             assert page.evaluate("filteredCards().every(c => c.front.primary.toLowerCase().startsWith('z'))")
             page.select_option("#filterCategory", "all")
-            page.click("#loadMore")
-            assert page.locator(".card").count() == 80
+            wait_render(page, 3980)
+            # A filter change during progressive rendering must cancel stale batches.
+            page.evaluate("""() => {
+              app.ui.query = ''; render();
+              app.ui.query = '行动如神'; render();
+            }""")
+            wait_render(page, 1)
+            page.wait_for_timeout(150)
+            assert page.locator(".card").count() == 1
+            page.evaluate("app.ui.query = ''; render()")
+            wait_render(page, 3980)
+            # Marking a card in the unfiltered view preserves the rest of the DOM.
+            page.evaluate("window.untouchedCard = document.querySelectorAll('.card')[1]")
+            page.locator(".card").first.locator(".front .term").click()
+            page.locator(".card").first.locator("[data-status=learning]").click()
+            assert page.evaluate("untouchedCard === document.querySelectorAll('.card')[1]")
+            page.locator(".card").first.locator(".back .definition").click()
 
             # A missing file reports an error and permits retry.
             page.evaluate("playPronunciation('./audio/missing-test.mp3', document.querySelector('.audio-button'))")
@@ -133,11 +170,27 @@ def verify_browser():
             page.wait_for_function("activePronunciation && activePronunciation.audio.currentTime > 0")
             page.select_option("#deckPicker", "raz-picture-vocabulary")
             page.wait_for_function("app.cards.length === 30")
+            wait_render(page, 30)
             assert page.evaluate("activePronunciation === null")
             assert page.locator(".card-image").first.evaluate("e => e.complete && e.naturalWidth > 0")
             page.select_option("#deckPicker", "cfa-level-1")
             page.wait_for_function("app.cards.length === 1614")
+            wait_render(page, 1614)
             assert page.locator("#known").inner_text() == "已掌握 0"
+            # A delayed, failed earlier load must not overwrite the newest deck.
+            page.evaluate("""async () => {
+              const original = getDeckPayload;
+              getDeckPayload = function(id) {
+                if (id === 'cfa-level-1') return new Promise(function(resolve, reject) {
+                  setTimeout(function() { reject(new Error('stale test load')); }, 60);
+                });
+                return original(id);
+              };
+              try { await Promise.all([switchDeck('cfa-level-1'), switchDeck('raz-picture-vocabulary')]); }
+              finally { getDeckPayload = original; }
+            }""")
+            wait_render(page, 30)
+            assert page.evaluate("app.deckData.deck.id === 'raz-picture-vocabulary'")
 
             # File-based opening verifies relative media paths with no HTTP service.
             file_context = browser.new_context(viewport={"width": 390, "height": 844})
@@ -145,11 +198,14 @@ def verify_browser():
             file_page.on("pageerror", lambda error: errors.append(str(error)))
             file_page.goto((ROOT / "index.html").as_uri() + "?deck=" + DECK_ID)
             file_page.wait_for_function("app.cards.length === 3980")
+            wait_render(file_page, 3980)
+            assert file_page.locator(".card").evaluate_all("cards => cards.map(c => c.dataset.cardId)") == desktop_ids
+            assert file_page.locator("#loadMore").count() == 0
             assert file_page.evaluate("document.documentElement.scrollWidth <= innerWidth")
             file_page.locator(".front .audio-button").first.click()
             file_page.wait_for_function("activePronunciation && activePronunciation.audio.currentTime > 0")
             file_page.wait_for_function("activePronunciation === null")
-            file_page.locator(".card .front .term").first.click()
+            file_page.locator(".card").nth(100).scroll_into_view_if_needed()
             file_page.screenshot(path=str(ROOT / "outputs/word-memory-mobile.png"))
             assert not errors, errors
             assert not remote, remote
@@ -161,5 +217,8 @@ def verify_browser():
 
 
 if __name__ == "__main__":
-    verify_data()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--skip-audio-decode", action="store_true", help="Retain hash verification; skip decoding unchanged audio")
+    args = parser.parse_args()
+    verify_data(decode_audio=not args.skip_audio_decode)
     verify_browser()

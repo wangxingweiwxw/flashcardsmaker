@@ -187,9 +187,12 @@ def main():
         label = {"youdao-uk": "英式发音", "youdao-us": "美式发音", "synthetic-en-us": "合成发音"}[asset["kind"]]
         for side in ("front", "back"):
             cards[-1][side]["audioLabel"] = label
+    # Sort display order only. IDs, source locators and audio filenames retain
+    # their original source indices so existing learning profiles still match.
+    cards.sort(key=lambda card: (card["front"]["primary"].casefold(), card["id"]))
     deck = {
         "schemaVersion": "kdf/1.0",
-        "deck": {"id": DECK_ID, "title": TITLE, "version": "2.0.0", "defaultCardType": "bilingual-basic",
+        "deck": {"id": DECK_ID, "title": TITLE, "version": "2.0.1", "defaultCardType": "bilingual-basic",
                  "description": f"{len(words):,} 个词条 · 音标、中文释义、谐音与记忆句 · 点击播放离线发音",
                  "locale": "zh-CN", "theme": {"accent": "#533483"},
                  "learningMode": {"autoplayAudio": False, "answerReveal": "tap", "showSource": False}},
@@ -209,6 +212,9 @@ def main():
     # The actual offline learner loads classic scripts, not the JSON catalog.
     runtime = dict(catalog, decks=[{**{k: v for k, v in entry.items() if k != "path"},
                                   "script": f"./data/{entry['id']}.js"} for entry in catalog["decks"]])
+    for entry in runtime["decks"]:
+        if entry["id"] == DECK_ID:
+            entry["script"] += "?v=" + deck["deck"]["version"]
     (ROOT / "data" / "catalog.js").write_text("window.__KDF_CATALOG__ = " + json.dumps(runtime, ensure_ascii=False, indent=2) + ";\n", encoding="utf-8")
     print(f"Created {len(cards)} cards and {len(assets)} local MP3 files.", flush=True)
 

@@ -291,7 +291,6 @@ main { max-width: 1180px; margin: auto; padding: 6px 24px 40px; }
   background: var(--panel);
 }
 .error h2 { color: var(--ink); }
-.load-wrap { text-align: center; padding-top: 22px; }
 footer {
   border-top: 1px solid var(--line);
   padding: 24px;

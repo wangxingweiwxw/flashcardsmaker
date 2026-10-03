@@ -16,8 +16,10 @@
 var $ = function(selector) { return document.querySelector(selector); };
 var IMPORT_LIBRARY_KEY = "kdf:imported-decks:v1";
 var COLORS = ["#0f6e56", "#b07514", "#b6442a", "#6b3d6e", "#1f5d99", "#2f8f4f", "#08423a", "#9d3a1e"];
-var BATCH = 40;
-var renderLimit = BATCH;
+var RENDER_BATCH = 80;
+var renderGeneration = 0;
+var renderTimer = null;
+var deckLoadGeneration = 0;
 var searchTimer = null;
 var activePronunciation = null;
 
@@ -312,8 +314,11 @@ function migrateLegacyCfaProfile() {
 }
 
 function loadDeck(deckId) {
+  cancelRender();
   stopPronunciation();
+  var loadGeneration = ++deckLoadGeneration;
   return getDeckPayload(deckId).then(function(payload) {
+    if (loadGeneration !== deckLoadGeneration) return false;
     var result = validateDeck(payload);
     if (!result.valid) throw new Error(result.errors.join("；"));
     app.deckData = payload;
@@ -335,6 +340,10 @@ function loadDeck(deckId) {
     if (app.ui.sectionId !== "all" && !app.categories.has(app.ui.sectionId)) app.ui.sectionId = "all";
     setDeckIdInUrl(payload.deck.id);
     applyDeckBrand();
+    return true;
+  }).catch(function(error) {
+    if (loadGeneration !== deckLoadGeneration) return false;
+    throw error;
   });
 }
 
@@ -381,7 +390,6 @@ function renderCategories() {
       saveUi();
       renderCategories();
       renderSections();
-      renderLimit = BATCH;
       render();
     });
   });
@@ -407,7 +415,6 @@ function renderSections() {
       app.ui.sectionId = button.getAttribute("data-section");
       saveUi();
       renderSections();
-      renderLimit = BATCH;
       render();
     });
   });
@@ -450,6 +457,7 @@ function renderCard(card, number) {
   var explanation = card.back && card.back.explanation && card.back.explanation !== backTranslation(card)
     ? "<div class=\"example mnemonic\"><span class=\"detail-label\">" + (homophone ? "记忆句" : "解释") + "</span>" + esc(card.back.explanation) + "</div>" : "";
   var element = document.createElement("article");
+  element.setAttribute("data-card-id", card.id);
   element.className = "card" + (app.allFlipped ? " flipped" : "");
   element.innerHTML =
     "<div class=\"face front\"><div class=\"meta\"><span class=\"tag\" style=\"background:" + categoryColor(card.categoryId) + "\">" + esc(categoryLabel(category)) + "</span><span class=\"num\">#" + number + "</span><span class=\"stars\">" + stars + "</span><span class=\"type\">" + esc(card.type) + "</span></div><div class=\"term\">" + fmtMath(esc(frontText(card))) + "</div>" + frontExtra + frontPhonetic + audioButton(card.front) + image + "<div class=\"hint\">点击翻转查看答案</div></div>" +
@@ -472,7 +480,7 @@ function renderCard(card, number) {
       var current = cardState(card.id);
       app.profile[card.id] = Object.assign({}, current, { priority: current.priority === level ? 0 : level });
       saveProfile();
-      render();
+      refreshCard();
     });
   });
   element.querySelectorAll("[data-status]").forEach(function(button) {
@@ -482,7 +490,7 @@ function renderCard(card, number) {
       var current = cardState(card.id);
       app.profile[card.id] = Object.assign({}, current, { status: current.status === status ? null : status });
       saveProfile();
-      render();
+      refreshCard();
     });
   });
   element.querySelector(".note").addEventListener("input", function(event) {
@@ -491,6 +499,15 @@ function renderCard(card, number) {
     saveProfile();
     updateStats();
   });
+  function refreshCard() {
+    // Avoid rebuilding thousands of cards when only this card's state changes.
+    if (app.ui.status !== "all") { render(); return; }
+    if (activePronunciation && element.contains(activePronunciation.button)) stopPronunciation();
+    var replacement = renderCard(card, number);
+    replacement.classList.toggle("flipped", element.classList.contains("flipped"));
+    element.parentNode.replaceChild(replacement, element);
+    updateStats();
+  }
   return element;
 }
 
@@ -504,24 +521,46 @@ function updateStats() {
   $("#progressText").textContent = percent + "%";
 }
 
+function cancelRender() {
+  renderGeneration += 1;
+  clearTimeout(renderTimer);
+  renderTimer = null;
+}
+
 function render() {
+  cancelRender();
   stopPronunciation();
   var list = filteredCards();
-  renderLimit = Math.min(Math.max(renderLimit, BATCH), list.length);
+  var generation = renderGeneration;
+  var nextIndex = 0;
   var deck = $("#deck");
   deck.innerHTML = "";
-  var fragment = document.createDocumentFragment();
-  list.slice(0, renderLimit).forEach(function(card, index) {
-    fragment.appendChild(renderCard(card, index + 1));
-  });
-  deck.appendChild(fragment);
+  deck.setAttribute("aria-busy", "true");
   $("#count").textContent = list.length + " / " + app.cards.length + " 张";
   $("#empty").hidden = Boolean(list.length);
-  $("#loadMore").hidden = renderLimit >= list.length;
   updateStats();
+  function appendBatch() {
+    if (generation !== renderGeneration) return;
+    var fragment = document.createDocumentFragment();
+    var end = Math.min(nextIndex + RENDER_BATCH, list.length);
+    for (; nextIndex < end; nextIndex += 1) {
+      fragment.appendChild(renderCard(list[nextIndex], nextIndex + 1));
+    }
+    deck.appendChild(fragment);
+    if (nextIndex < list.length) {
+      // Continue even without scrolling; yield between batches for mobile input.
+      renderTimer = setTimeout(appendBatch, 0);
+    } else {
+      renderTimer = null;
+      deck.setAttribute("aria-busy", "false");
+    }
+  }
+  appendBatch();
 }
 
 function showError(error) {
+  cancelRender();
+  $("#deck").setAttribute("aria-busy", "false");
   $("#deck").innerHTML = "<div class=\"error\"><h2>无法加载卡组</h2><p>" + esc(error.message || String(error)) + "</p></div>";
 }
 
@@ -570,11 +609,11 @@ function renderManagerLibrary() {
 
 function switchDeck(deckId) {
   $("#deck").innerHTML = "<div class=\"loading\">正在切换卡组…</div>";
-  return loadDeck(deckId).then(function() {
+  return loadDeck(deckId).then(function(loaded) {
+    if (loaded === false) return;
     renderDeckPicker();
     renderCategories();
     renderSections();
-    renderLimit = BATCH;
     render();
   }).catch(showError);
 }
@@ -682,14 +721,12 @@ function bindEvents() {
     searchTimer = setTimeout(function() {
       app.ui.query = value;
       saveUi();
-      renderLimit = BATCH;
       render();
     }, 200);
   });
   $("#filterStatus").addEventListener("change", function(event) {
     app.ui.status = event.target.value;
     saveUi();
-    renderLimit = BATCH;
     render();
   });
   $("#filterCategory").addEventListener("change", function(event) {
@@ -698,7 +735,6 @@ function bindEvents() {
     saveUi();
     renderCategories();
     renderSections();
-    renderLimit = BATCH;
     render();
   });
   $("#flipAll").addEventListener("click", function() {
@@ -710,17 +746,12 @@ function bindEvents() {
   });
   $("#shuffle").addEventListener("click", function() {
     app.cards = app.cards.slice().sort(function() { return Math.random() - 0.5; });
-    renderLimit = BATCH;
     render();
   });
   $("#reset").addEventListener("click", function() {
     if (!confirm("清除当前卡组的学习进度、优先级和笔记？此操作不可恢复。")) return;
     app.profile = {};
     saveProfile();
-    render();
-  });
-  $("#loadMore").addEventListener("click", function() {
-    renderLimit += BATCH;
     render();
   });
   $("#theme").addEventListener("click", function() {
