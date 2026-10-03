@@ -105,7 +105,8 @@ def verify_browser():
             assert len(set(desktop_ids)) == 3980
             assert page.locator(".card").nth(100).locator(".front .term").inner_text().lower().startswith("a")
             assert page.locator(".card").nth(101).locator(".front .term").inner_text().lower().startswith("a")
-            assert page.locator("#deckPicker option").count() == 3
+            catalog = json.loads((ROOT / "deck-catalog.json").read_text(encoding="utf-8"))
+            assert page.locator("#deckPicker option").count() == len(catalog["decks"])
             assert not media, "Audio should not preload on deck load"
 
             first_audio = page.locator(".front .audio-button").first

@@ -19,6 +19,12 @@ window.__KDF_CATALOG__ = {
       "title": "英语谐音记忆词卡",
       "featured": true,
       "script": "./data/word-memory-v2.js?v=2.0.3"
+    },
+    {
+      "id": "ket-vocabulary-1624",
+      "title": "KET 词汇卡组（中英＋音标）",
+      "script": "./data/ket-vocabulary-1624.js?v=1.0.0",
+      "featured": true
     }
   ]
 };

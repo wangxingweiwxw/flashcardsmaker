@@ -19,6 +19,12 @@
       "title": "英语谐音记忆词卡",
       "path": "./decks/word-memory-v2/deck.json",
       "featured": true
+    },
+    {
+      "id": "ket-vocabulary-1624",
+      "title": "KET 词汇卡组（中英＋音标）",
+      "path": "./decks/ket-vocabulary-1624/deck.json",
+      "featured": true
     }
   ]
 }
