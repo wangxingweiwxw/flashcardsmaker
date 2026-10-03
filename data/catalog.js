@@ -18,7 +18,7 @@ window.__KDF_CATALOG__ = {
       "id": "word-memory-v2",
       "title": "英语谐音记忆词卡",
       "featured": true,
-      "script": "./data/word-memory-v2.js?v=2.0.2"
+      "script": "./data/word-memory-v2.js?v=2.0.3"
     }
   ]
 };

@@ -224,11 +224,6 @@ function validateDeck(payload) {
     if (card && cardIds.has(card.id)) errors.push("卡片 ID 重复：" + card.id);
     if (card && card.id) cardIds.add(card.id);
     if (card && card.categoryId && !categoryIds.has(card.categoryId)) errors.push("卡片 " + card.id + " 指向不存在的分类");
-    if (card && card.categoryIds !== undefined && (!Array.isArray(card.categoryIds) ||
-        card.categoryIds.some(function(id) { return typeof id !== "string" || !categoryIds.has(id); }) ||
-        new Set(card.categoryIds).size !== card.categoryIds.length)) {
-      errors.push("卡片 " + card.id + " 的 categoryIds 必须是有效且不重复的分类 ID 数组");
-    }
     if (card && card.status === "published") published += 1;
   });
   if (!published) warnings.push("该卡组没有 published 卡；导入后不会在学习区显示卡片。");
@@ -428,8 +423,7 @@ function renderSections() {
 function filteredCards() {
   var query = app.ui.query.trim().toLowerCase();
   return app.cards.filter(function(card) {
-    if (app.ui.categoryId !== "all" && card.categoryId !== app.ui.categoryId &&
-        (card.categoryIds || []).indexOf(app.ui.categoryId) === -1) return false;
+    if (app.ui.categoryId !== "all" && card.categoryId !== app.ui.categoryId) return false;
     if (app.ui.sectionId !== "all" && card.sectionId !== app.ui.sectionId) return false;
     var state = cardState(card.id);
     if (app.ui.status === "known" && state.status !== "known") return false;

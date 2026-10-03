@@ -17,7 +17,6 @@ import shutil
 import subprocess
 import tempfile
 import time
-import unicodedata
 from urllib.parse import quote
 from urllib.request import Request, urlopen
 
@@ -25,34 +24,6 @@ ROOT = Path(__file__).resolve().parents[1]
 DECK_ID = "word-memory-v2"
 TITLE = "英语谐音记忆词卡"
 SOURCE = ROOT / "word-memory-app-v2.0.html"
-
-
-def normalize_term(term):
-    # Match complete terms, ignoring typography and sentence-ending punctuation.
-    text = unicodedata.normalize("NFKC", term).replace("’", "'").casefold()
-    return " ".join(text.split()).rstrip(".!?。！？…")
-
-
-def apply_grade_category(cards):
-    syllabus = json.loads((ROOT / "tools/data/grade-5-upper.json").read_text(encoding="utf-8"))
-    by_term = {}
-    for card in cards:
-        by_term.setdefault(normalize_term(card["front"]["primary"]), []).append(card)
-    matches, unmatched = [], []
-    for entry in syllabus["entries"]:
-        found = by_term.get(normalize_term(entry["term"]), [])
-        if not found:
-            unmatched.append(entry)
-            continue
-        for card in found:
-            card["categoryIds"] = [card["categoryId"], syllabus["categoryId"]]
-        matches.append({**entry, "cardIds": [card["id"] for card in found]})
-    write_json(ROOT / "outputs/grade-5-upper-matches.json", {
-        "source": syllabus["source"], "sourceSha256": syllabus["sourceSha256"],
-        "matched": matches, "unmatched": unmatched})
-    print(f"Grade 5 upper: {len(matches)} matched terms; {len(unmatched)} omitted (no existing card).", flush=True)
-    return {"id": syllabus["categoryId"], "name": syllabus["label"],
-            "label": syllabus["label"], "parentId": None, "sortOrder": 0}
 
 
 def read_words():
@@ -219,15 +190,14 @@ def main():
     # Sort display order only. IDs, source locators and audio filenames retain
     # their original source indices so existing learning profiles still match.
     cards.sort(key=lambda card: (card["front"]["primary"].casefold(), card["id"]))
-    grade_category = apply_grade_category(cards)
     deck = {
         "schemaVersion": "kdf/1.0",
-        "deck": {"id": DECK_ID, "title": TITLE, "version": "2.0.2", "defaultCardType": "bilingual-basic",
+        "deck": {"id": DECK_ID, "title": TITLE, "version": "2.0.3", "defaultCardType": "bilingual-basic",
                  "description": f"{len(words):,} 个词条 · 音标、中文释义、谐音与记忆句 · 点击播放离线发音",
                  "locale": "zh-CN", "theme": {"accent": "#533483"},
                  "learningMode": {"autoplayAudio": False, "answerReveal": "tap", "showSource": False}},
-        "categories": [grade_category] + [{"id": "letter-" + letter, "name": letter.upper(), "label": letter.upper() + " 开头",
-                        "parentId": None, "sortOrder": i + 1} for i, letter in enumerate(letters)],
+        "categories": [{"id": "letter-" + letter, "name": letter.upper(), "label": letter.upper() + " 开头",
+                        "parentId": None, "sortOrder": i} for i, letter in enumerate(letters)],
         "cards": cards,
     }
     write_json(ROOT / "decks" / DECK_ID / "deck.json", deck)
