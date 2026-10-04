@@ -353,6 +353,7 @@ function applyDeckBrand() {
   document.title = deck.title + " · 知识闪卡";
   $("#deckTitle").textContent = deck.title;
   $("#deckDescription").textContent = deck.description || "可导入、可复习、可迁移的知识闪卡。";
+  $("#deckDescription").hidden = deck.id === "junior-themed-vocabulary";
   $("#deckBadge").textContent = deck.defaultCardType;
   $("#deckAccent").style.background = accent;
   document.documentElement.style.setProperty("--accent", accent);
