@@ -1,7 +1,10 @@
 """Check source accounting, builtin rendering, and actual JSON import on desktop/mobile."""
 import argparse
+import base64
+from io import BytesIO
 import json
 from pathlib import Path
+from PIL import Image
 from playwright.sync_api import sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -17,6 +20,14 @@ assert len({c['front']['primary'].casefold() for c in cards}) == len(cards)
 assert sum(not c['back'].get('phonetic') for c in cards) == 33
 assert all(c['status'] == 'published' and c['source']['type'] == 'pdf' for c in cards)
 assert all(not c['front'].get('audio') and not c['back'].get('audio') for c in cards)
+assert expected['deck']['version'] == '1.1.0'
+for card in cards:
+    assert card['type'] == 'image-vocabulary'
+    uri = card['front']['image']
+    assert uri.startswith('data:image/webp;base64,')
+    with Image.open(BytesIO(base64.b64decode(uri.split(',', 1)[1], validate=True))) as image:
+        image.load()
+        assert image.width > 0 and image.height > 0
 by_word = {c['front']['primary']: c for c in cards}
 assert by_word['chemist']['back']['translation'] == '药剂师；化学家'
 assert by_word['pen']['back']['translation'] == '钢笔'
@@ -27,6 +38,12 @@ assert 'p. 10' in by_word['paper']['source']['locator'] and 'p. 11' in by_word['
 
 def wait_render(page, count):
     page.wait_for_function("n => document.querySelector('#deck').getAttribute('aria-busy') === 'false' && document.querySelectorAll('.card').length === n", arg=count)
+
+
+def check_images(page):
+    # Lazy images outside the viewport must also be decoded before acceptance.
+    page.locator('.card-image').evaluate_all("imgs=>imgs.forEach(i=>i.loading='eager')")
+    page.wait_for_function("()=>document.querySelectorAll('.card-image').length===769 && [...document.querySelectorAll('.card-image')].every(i=>i.complete && i.naturalWidth>0)", timeout=60000)
 
 
 def settings(page, width):
@@ -45,6 +62,8 @@ with sync_playwright() as p:
         page.on('dialog', lambda dialog: dialog.accept())
         page.goto(base + '?deck=' + ID)
         wait_render(page, 769)
+        check_images(page)
+        page.screenshot(path=str(ROOT / f'outputs/junior-images-{width}.png'))
         assert page.evaluate('app.deckData') == expected
         assert page.locator('.card').evaluate_all('cs=>cs.map(c=>c.dataset.cardId)') == [c['id'] for c in cards]
         assert page.locator('#deckPicker option').count() == 5
@@ -93,7 +112,8 @@ with sync_playwright() as p:
         wait_render(page, 769)
         assert page.evaluate('app.deckData') == expected
         assert not errors, errors
-        results.append(dict(viewport=width, cardCount=769, all25Categories=True, jsonImport=True, reload=True, existing4Decks=True, errors=errors))
+        check_images(page)
+        results.append(dict(viewport=width, cardCount=769, decodedImages=769, all25Categories=True, jsonImport=True, reload=True, existing4Decks=True, errors=errors))
         context.close()
         print(f'PASS {width}px: 769 cards in order, 25 filters, IPA, progress, JSON import and previous 4 decks', flush=True)
     browser.close()

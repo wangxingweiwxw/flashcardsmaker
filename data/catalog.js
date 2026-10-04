@@ -29,7 +29,7 @@ window.__KDF_CATALOG__ = {
     {
       "id": "junior-themed-vocabulary",
       "title": "初中主题词汇（图解版）",
-      "script": "./data/junior-themed-vocabulary.js?v=1.0.0",
+      "script": "./data/junior-themed-vocabulary.js?v=1.1.0",
       "featured": true
     }
   ]

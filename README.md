@@ -143,7 +143,7 @@ PDF 自动产出的卡默认均为 `draft`，并保留 `source.locator` 页码�
 
 ## Cloudflare 部署
 
-内置 `junior-themed-vocabulary`（初中主题词汇·图解版）由 27 页纯图片 PDF 的主词表整理而成：825 次词条出现，合并 56 次重复后为 769 张文字词卡、25 个主题。按首次出现的主题归类，其余主题保留为可搜索标签；原图同词不同义合并在一张卡中。保留页码、规范化音标和 10 处词义修订说明，33 个原文缺失音标的词条留空。不含原图插画或音频，也不声称为 3500 词或 KET 官方词表。入口：`https://cards.chipai.cc/?deck=junior-themed-vocabulary`。构建脚本为 `python tools/build_junior_vocabulary.py`；纯图片输入不能由技能的文本提取命令自动完成，当前数据来自逐页识读。
+内置 `junior-themed-vocabulary`（初中主题词汇·图解版）由 27 页纯图片 PDF 的主词表整理而成：825 次词条出现，合并 56 次重复后为 769 张图文词卡、25 个主题。按首次出现的主题归类，其余主题保留为可搜索标签；原图同词不同义合并在一张卡中。保留页码、规范化音标和 10 处词义修订说明，33 个原文缺失音标的词条留空。769 张卡片均配图：668 张使用原 PDF 裁图，28 张使用同风格补绘图，73 张使用数量、序数、日期等示意图。正面英文与图片、背面词义及音标，沿用 RAZ 卡组布局。WebP 图片内嵌于 KDF，可完整导入，无外部图片依赖；卡片 ID 保持不变。不含音频，也不声称为 3500 词或 KET 官方词表。入口：`https://cards.chipai.cc/?deck=junior-themed-vocabulary`。构建脚本为 `python tools/build_junior_vocabulary.py`；纯图片输入不能由技能的文本提取命令自动完成，当前数据来自逐页识读。图片来源与裁切坐标保存在 `tools/data/junior-illustrations.json`，补图提示词记录在 `tools/data/junior-image-generation.json`。如需重新裁图，先将原 PDF 页面导出至 `tmp/pdfs/junior3500/page-XX.png`，将补绘原图放入 `outputs/junior-generated/`，再运行 `python tools/build_junior_images.py`；日常构建可直接使用已提交的图片清单。
 
 内置 KET 卡组 `ket-vocabulary-1624` 含 1,624 张已发布词卡，保留原表顺序、英文、中文释义、音标和页码，提供 25 个实际出现的首字母分类。直接入口为 `https://cards.chipai.cc/?deck=ket-vocabulary-1624`。原表 6 处缺失释义或疑似截断音标保留在对应卡片的说明中；本卡组没有添加音频。原有卡片 ID 与导入包一致，可继续使用同一学习档案。
 

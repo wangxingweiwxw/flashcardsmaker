@@ -1,7 +1,7 @@
 """Build the themed bilingual deck from the visually transcribed image PDF.
 
 The input is an edited transcription, not an OCR result or verbatim quotation.
-No original PDF, page images, or audio are distributed by this builder.
+Only cropped illustrations are embedded; no original PDF, full pages, or audio.
 """
 from collections import Counter
 import hashlib
@@ -20,6 +20,7 @@ def write_json(path, value):
 
 
 def main():
+    illustrations = json.loads((ROOT / 'tools/data/junior-illustrations.json').read_text(encoding='utf-8'))
     groups, entries, page_counts = {}, {}, Counter()
     rows, duplicates, corrections = [], [], []
     for line in (ROOT / 'tools/data/junior-themed-vocabulary.txt').read_text(encoding='utf-8').splitlines():
@@ -61,8 +62,9 @@ def main():
             back['phonetic'] = '/' + ipa + '/'
         if notes:
             back['explanation'] = '\n'.join(notes)
-        card = dict(id=entry['id'], type='bilingual-basic', status='published',
-                    categoryId=groups[first['topic']], front=dict(primary=first['word']), back=back,
+        illustration = illustrations[first['word'].casefold()]
+        card = dict(id=entry['id'], type='image-vocabulary', status='published',
+                    categoryId=groups[first['topic']], front=dict(primary=first['word'], image=illustration['image']), back=back,
                     tags=['初中主题词汇', *topics],
                     source=dict(type='pdf', documentId=SOURCE,
                                 locator='; '.join(f"p. {r['page']} · entry {r['position']}" for r in occurrences),
@@ -71,9 +73,9 @@ def main():
         cards.append(card)
     categories = [dict(id=group, name=topic, label=topic, parentId=None, sortOrder=i)
                   for i, (topic, group) in enumerate(groups.items())]
-    deck = dict(schemaVersion='kdf/1.0', deck=dict(id=DECK_ID, title='初中主题词汇（图解版）', version='1.0.0',
-                defaultCardType='bilingual-basic', locale='zh-CN',
-                description=f'据27页图解PDF整理，去重后{len(cards)}词、{len(categories)}个主题。文字词卡：英文、词义及可核对音标；不含原图插画或音频。音标已规范化，修订见卡片说明。',
+    deck = dict(schemaVersion='kdf/1.0', deck=dict(id=DECK_ID, title='初中主题词汇（图解版）', version='1.1.0',
+                defaultCardType='image-vocabulary', locale='zh-CN',
+                description=f'据27页图解PDF整理，去重后{len(cards)}词、{len(categories)}个主题，每张词卡均有配图。优先采用原PDF插画，缺图补绘；数词和日期使用示意图。英文与图片在正面，词义及音标在背面；不含音频。',
                 theme=dict(accent='#4568a6'), learningMode=dict(answerReveal='tap', showSource=True)),
                 categories=categories, cards=cards)
     path = ROOT / 'decks' / DECK_ID / 'deck.json'
@@ -84,12 +86,12 @@ def main():
     report = dict(source=SOURCE, pages=27, pageEntryCounts=dict(page_counts), sourceEntries=len(rows),
                   cards=len(cards), categories=len(categories), duplicatesMerged=duplicates, corrections=corrections,
                   missingPhonetic=[c['front']['primary'] for c in cards if not c['back'].get('phonetic')],
-                  conversion='Image-only PDF: skill extract failed; visual transcription into bilingual-basic cards used.',
+                  conversion='Image-only PDF: visual transcription with cropped illustrations, generated additions and teaching diagrams; image-vocabulary cards follow the RAZ layout.',
                   scope='Main vocabulary lists on pages 2–27; cover, study tips, diagram labels and examples excluded. Page 23 omits ten; no missing entries invented.',
                   excludedChineseOnlyLabels=['外公', '外婆', '舅舅', '姑姑', '外甥', '外甥女'],
                   deduplication='English term casefold; merge meanings, all source locators and topic tags; primary category is first occurrence.',
                   phonetics='IPA typography and obvious source errors normalized during visual transcription; not a verbatim quote or exhaustive dictionary verification. Missing IPA left empty.',
-                  images='Text cards only. Source illustrations were not extracted into individual cards.',
+                  images=dict(count=len(illustrations), kinds=dict(Counter(v['kind'] for v in illustrations.values())), format='Embedded WebP data URIs; no external assets required', manifest='tools/data/junior-illustrations.json'),
                   audio='No audio in source PDF; no audio field or external pronunciation dependency.',
                   publication='Published under explicit user instruction to generate, add as builtin and deploy; no claim of separate human content review.',
                   referenceLinks=[f'https://dictionary.cambridge.org/dictionary/english-chinese-simplified/{w}' for w in ['female','parent','rather']],

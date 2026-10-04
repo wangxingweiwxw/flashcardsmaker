@@ -1,0 +1,155 @@
+{
+  "mode": "built-in image_gen",
+  "assets": [
+    {
+      "word": "guitar",
+      "prompt": "Square junior English flashcard image of a single acoustic guitar, entire instrument visible, angled slightly. Charming Chinese school vocabulary poster style: colored pencil texture, dark hand-drawn outlines, warm white background, simple flat forms and blue green orange accents. Centered isolated composition with generous margins. No text, no labels, no letters or watermark.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/guitar.png"
+    },
+    {
+      "word": "violin",
+      "prompt": "Square junior English flashcard image of one violin with bow next to it, entire instrument visible. Charming Chinese school vocabulary poster style: colored pencil texture, dark hand-drawn outlines, warm white background, simple flat forms and blue green orange accents. Centered isolated composition with generous margins. No text, no labels, no letters or watermark.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/violin.png"
+    },
+    {
+      "word": "borrow",
+      "prompt": "Square junior English flashcard image of two friendly pupils exchanging a book across a desk; one offers a book and the other receives it, both hands clearly shown. Charming Chinese school vocabulary poster style: colored pencil texture, dark hand-drawn outlines, warm white background, simple flat forms and blue green orange accents. Centered isolated composition with generous margins. No text, no labels, no letters or watermark.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/borrow.png"
+    },
+    {
+      "word": "coffee",
+      "prompt": "Square junior English flashcard image of an unlabelled white cup and saucer containing black coffee, rising steam and a few coffee beans. Charming Chinese school vocabulary poster style: colored pencil texture, dark hand-drawn outlines, warm white background, simple flat forms and blue green orange accents. Centered isolated composition with generous margins. No text, no labels, no letters or watermark.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/coffee.png"
+    },
+    {
+      "word": "glue",
+      "prompt": "One square isolated junior English vocabulary flashcard illustration of a small unlabelled white glue bottle with orange nozzle, beside two paper pieces being glued together. Colored-pencil school-poster style, dark hand-drawn contours, soft bright color fills, warm white backdrop, clear simple composition with white margins. No written words, no labels, no watermark.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/glue.png"
+    },
+    {
+      "word": "soy sauce",
+      "prompt": "One square isolated junior English vocabulary flashcard illustration of an unlabelled glass bottle of dark brown soy sauce beside a tiny dipping bowl and a few soybeans. Colored-pencil school-poster style, dark hand-drawn contours, soft bright color fills, warm white backdrop, clear simple composition with white margins. No written words, no labels, no watermark.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/soy sauce.png"
+    },
+    {
+      "word": "garlic powder",
+      "prompt": "One square isolated junior English vocabulary flashcard illustration of a small wooden spoon holding pale garlic powder beside a modest pile of powder and a garlic clove. Colored-pencil school-poster style, dark hand-drawn contours, soft bright color fills, warm white backdrop, clear simple composition with white margins. No written words, no labels, no watermark.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/garlic powder.png"
+    },
+    {
+      "word": "badminton",
+      "prompt": "One square isolated junior English vocabulary flashcard illustration of a badminton racket beside a white feather shuttlecock. Colored-pencil school-poster style, dark hand-drawn contours, soft bright color fills, warm white backdrop, clear simple composition with white margins. No written words, no labels, no watermark.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/badminton.png"
+    },
+    {
+      "word": "baseball",
+      "prompt": "One square isolated junior English vocabulary flashcard illustration of a wooden baseball bat beside a white baseball with red stitches. Colored-pencil school-poster style, dark hand-drawn contours, soft bright color fills, warm white backdrop, clear simple composition with white margins. No written words, no labels, no watermark.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/baseball.png"
+    },
+    {
+      "word": "bank",
+      "prompt": "One square isolated junior English vocabulary flashcard illustration of a small friendly bank building, classical columns, a large coin with a currency symbol beside its entrance; absolutely no signs or lettering. Colored-pencil school-poster style, dark hand-drawn contours, soft bright color fills, warm white backdrop, clear simple composition with white margins. No written words, no labels, no watermark.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/bank.png"
+    },
+    {
+      "word": "museum",
+      "prompt": "One square isolated junior English vocabulary flashcard illustration of a museum building with classical columns and an open entrance through which a dinosaur fossil display can be seen, no labels or signs. Colored-pencil school-poster style, dark hand-drawn contours, soft bright color fills, warm white backdrop, clear simple composition with white margins. No written words, no labels, no watermark.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/museum.png"
+    },
+    {
+      "word": "station",
+      "prompt": "One square isolated junior English vocabulary flashcard illustration of a train waiting at a railway station platform beneath a canopy with a clock, no lettering or signs. Colored-pencil school-poster style, dark hand-drawn contours, soft bright color fills, warm white backdrop, clear simple composition with white margins. No written words, no labels, no watermark.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/station.png"
+    },
+    {
+      "word": "cinema",
+      "prompt": "One square isolated junior English vocabulary flashcard illustration of a small cinema building with a blank marquee, a film reel and two poster frames containing only abstract silhouettes, no words or lettering. Colored-pencil school-poster style, dark hand-drawn contours, soft bright color fills, warm white backdrop, clear simple composition with white margins. No written words, no labels, no watermark.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/cinema.png"
+    },
+    {
+      "word": "umbrella",
+      "prompt": "One square junior English vocabulary flashcard illustration of one open blue umbrella, with the complete curved handle fully visible. Colored-pencil school-poster style, dark hand-drawn outlines, warm white backdrop, clean centered isolated object and white margins. No text, letters, labels, captions or watermark.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/umbrella.png"
+    },
+    {
+      "word": "taxi",
+      "prompt": "One square junior English vocabulary flashcard illustration of a complete yellow taxi cab with a small plain blank roof light and a friendly driver visible through the window. Colored-pencil school-poster style, dark hand-drawn outlines, warm white backdrop, clean centered isolated object and generous white margins. No text, no TAXI label, no letters, numbers, captions or watermark.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/taxi.png"
+    },
+    {
+      "word": "coach",
+      "prompt": "COACH: sports trainer with whistle, clipboard, basketball hoop; colored-pencil school-poster style; no words.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/coach.png"
+    },
+    {
+      "word": "referee",
+      "prompt": "One square vocabulary flashcard illustration for referee. A sports referee in black-and-white striped shirt raising one hand and blowing a whistle beside a football; no teams or words. Whimsical Chinese school poster art, colored pencil texture, dark hand-drawn outlines, friendly cute flat figures, warm white background, restrained green blue orange palette. Single clear centered scene, generous white margins. No captions, no labels, no English or Chinese words, no watermark.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/referee.png"
+    },
+    {
+      "word": "model",
+      "prompt": "One square vocabulary flashcard illustration for model. A fashion model wearing a simple stylish casual outfit walking confidently along a short runway. Non-sexual age-appropriate educational illustration. Whimsical Chinese school poster art, colored pencil texture, dark hand-drawn outlines, friendly cute flat figures, warm white background, restrained green blue orange palette. Single clear centered scene, generous white margins. No captions, no labels, no English or Chinese words, no watermark.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/model.png"
+    },
+    {
+      "word": "designer",
+      "prompt": "One square vocabulary flashcard illustration for designer. A clothing designer at a desk sketching a dress on blank paper, mannequin with a colorful dress next to the desk. Whimsical Chinese school poster art, colored pencil texture, dark hand-drawn outlines, friendly cute flat figures, warm white background, restrained green blue orange palette. Single clear centered scene, generous white margins. No captions, no labels, no English or Chinese words, no watermark.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/designer.png"
+    },
+    {
+      "word": "composer",
+      "prompt": "One square vocabulary flashcard illustration for composer. A musician composing music: seated at a piano writing musical notes on a staff sheet. Notes are fine, no words or letters. Whimsical Chinese school poster art, colored pencil texture, dark hand-drawn outlines, friendly cute flat figures, warm white background, restrained green blue orange palette. Single clear centered scene, generous white margins. No captions, no labels, no English or Chinese words, no watermark.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/composer.png"
+    },
+    {
+      "word": "salt",
+      "prompt": "One centered square vocabulary illustration of a small unlabelled glass salt shaker spilling a tiny mound of white salt grains. Chinese school poster colored-pencil style, soft warm white background, black hand-drawn outlines, bright simple colors and ample margins. No letters, no labels, no words, no watermark.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/salt.png"
+    },
+    {
+      "word": "sugar",
+      "prompt": "One centered square vocabulary illustration of a small open unlabelled sugar jar next to three sugar cubes and a spoon of white crystals. Chinese school poster colored-pencil style, soft warm white background, black hand-drawn outlines, bright simple colors and ample margins. No letters, no labels, no words, no watermark.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/sugar.png"
+    },
+    {
+      "word": "vinegar",
+      "prompt": "One centered square vocabulary illustration of an unlabelled slim clear glass cruet filled with amber vinegar, beside a bowl of dipping vinegar and a few grapes. Chinese school poster colored-pencil style, soft warm white background, black hand-drawn outlines, bright simple colors and ample margins. No letters, no labels, no words, no watermark.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/vinegar.png"
+    },
+    {
+      "word": "mustard",
+      "prompt": "One centered square vocabulary illustration of an unlabelled open mustard jar, small mustard seeds and a spoon with yellow mustard sauce. Chinese school poster colored-pencil style, soft warm white background, black hand-drawn outlines, bright simple colors and ample margins. No letters, no labels, no words, no watermark.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/mustard.png"
+    },
+    {
+      "word": "cola",
+      "prompt": "One centered square vocabulary illustration of an unlabelled red soda can next to a glass of dark fizzy cola and ice cubes. Chinese school poster colored-pencil style, soft warm white background, black hand-drawn outlines, bright simple colors and ample margins. No letters, no labels, no words, no watermark.",
+      "mode": "built-in image_gen",
+      "asset": "outputs/junior-generated/cola.png"
+    }
+  ]
+}
