@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <meta name="theme-color" content="#0f6e56" />
   <title>知识闪卡生成器</title>
-  <link rel="stylesheet" href="./style.css?v=20261004-junior-header" />
+  <link rel="stylesheet" href="./style.css?v=20261004-filter-fix" />
 </head>
 <body>
   <header>
@@ -28,6 +28,7 @@
         <div class="toolbar">
           <input type="search" id="search" placeholder="搜索问题、答案、翻译或标签…" aria-label="搜索卡片" />
           <select id="filterCategory" aria-label="按分类筛选"></select>
+          <select id="filterLetterCount" aria-label="按字母数量筛选" title="只计算英文字母，不计空格、连字符和标点" hidden></select>
           <select id="filterStatus" aria-label="按学习状态筛选">
             <option value="all">全部状态</option>
             <option value="learning">学习中</option>
@@ -36,6 +37,7 @@
             <option value="noted">有笔记</option>
             <option value="starred">已标星</option>
           </select>
+          <button class="button" id="clearFilters" type="button" title="清除全部筛选并恢复原始顺序，保留学习进度">清除筛选</button>
           <button class="button" id="manageDecks" type="button">卡组管理</button>
           <button class="button" id="flipAll" type="button">显示释义</button>
           <button class="button" id="shuffle" type="button">打乱顺序</button>
@@ -105,7 +107,7 @@
     </section>
   </div>
   <div class="toast" id="toast" role="status" hidden></div>
-  <script src="./data/catalog.js?v=20261004-junior-header"></script>
-  <script src="./app.js?v=20261004-junior-header"></script>
+  <script src="./data/catalog.js?v=20261004-filter-fix"></script>
+  <script src="./app.js?v=20261004-filter-fix"></script>
 </body>
 </html>

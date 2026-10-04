@@ -78,6 +78,10 @@ function audioButton(side) {
     "\" data-audio-label=\"" + esc(label) + "\" aria-label=\"" + esc(label + " " + (side.primary || "")) + "\" aria-pressed=\"false\">▶ " + esc(label) + "</button>";
 }
 
+function defaultUi() {
+  return { categoryId: "all", sectionId: "all", query: "", status: "all", letterCount: "all" };
+}
+
 var app = {
   catalog: { decks: [] },
   importedDecks: {},
@@ -86,7 +90,7 @@ var app = {
   categories: new Map(),
   childCategories: new Map(),
   profile: {},
-  ui: { categoryId: "all", sectionId: "all", query: "", status: "all" },
+  ui: defaultUi(),
   allFlipped: false
 };
 
@@ -315,6 +319,7 @@ function migrateLegacyCfaProfile() {
 
 function loadDeck(deckId) {
   cancelRender();
+  clearTimeout(searchTimer);
   stopPronunciation();
   var loadGeneration = ++deckLoadGeneration;
   return getDeckPayload(deckId).then(function(payload) {
@@ -333,11 +338,16 @@ function loadDeck(deckId) {
     });
     try { app.profile = JSON.parse(localStorage.getItem(profileKey()) || "{}"); }
     catch (error) { app.profile = {}; }
-    try { app.ui = Object.assign({}, app.ui, JSON.parse(localStorage.getItem(uiKey()) || "{}")); }
+    app.ui = defaultUi();
+    try { app.ui = Object.assign(defaultUi(), JSON.parse(localStorage.getItem(uiKey()) || "{}")); }
     catch (error) {}
+    if (typeof app.ui.query !== "string") app.ui.query = "";
+    if (["all", "known", "learning", "unseen", "starred", "noted"].indexOf(app.ui.status) === -1) app.ui.status = "all";
     migrateLegacyCfaProfile();
     if (app.ui.categoryId !== "all" && !app.categories.has(app.ui.categoryId)) app.ui.categoryId = "all";
     if (app.ui.sectionId !== "all" && !app.categories.has(app.ui.sectionId)) app.ui.sectionId = "all";
+    if (app.ui.categoryId === "all" || (app.ui.sectionId !== "all" && app.categories.get(app.ui.sectionId).parentId !== app.ui.categoryId)) app.ui.sectionId = "all";
+    if (!supportsLetterCount() || !app.cards.some(function(card) { return String(wordLetterCount(card)) === String(app.ui.letterCount); })) app.ui.letterCount = "all";
     setDeckIdInUrl(payload.deck.id);
     applyDeckBrand();
     return true;
@@ -421,11 +431,50 @@ function renderSections() {
   });
 }
 
+function supportsLetterCount() {
+  return app.deckData.deck.id === "word-memory-v2";
+}
+
+function wordLetterCount(card) {
+  return (String((card.front || {}).primary || "").match(/[a-z]/gi) || []).length;
+}
+
+function renderFilters() {
+  $("#search").value = app.ui.query;
+  $("#filterStatus").value = app.ui.status;
+  var select = $("#filterLetterCount");
+  select.hidden = !supportsLetterCount();
+  var counts = {};
+  if (supportsLetterCount()) app.cards.forEach(function(card) {
+    var count = wordLetterCount(card);
+    counts[count] = (counts[count] || 0) + 1;
+  });
+  select.innerHTML = '<option value="all">全部字母数</option>' + Object.keys(counts).sort(function(a, b) { return Number(a) - Number(b); }).map(function(count) {
+    return '<option value="' + count + '">' + count + ' 个字母（' + counts[count] + '）</option>';
+  }).join("");
+  select.value = app.ui.letterCount;
+  renderCategories();
+  renderSections();
+}
+
+function clearFilters() {
+  clearTimeout(searchTimer);
+  app.ui = defaultUi();
+  app.cards = app.deckData.cards.filter(function(card) { return card.status === "published"; });
+  app.allFlipped = false;
+  $("#flipAll").textContent = "显示释义";
+  saveUi();
+  renderFilters();
+  render();
+  window.scrollTo(0, 0);
+}
+
 function filteredCards() {
   var query = app.ui.query.trim().toLowerCase();
   return app.cards.filter(function(card) {
     if (app.ui.categoryId !== "all" && card.categoryId !== app.ui.categoryId) return false;
     if (app.ui.sectionId !== "all" && card.sectionId !== app.ui.sectionId) return false;
+    if (supportsLetterCount() && app.ui.letterCount !== "all" && wordLetterCount(card) !== Number(app.ui.letterCount)) return false;
     var state = cardState(card.id);
     if (app.ui.status === "known" && state.status !== "known") return false;
     if (app.ui.status === "learning" && state.status !== "learning") return false;
@@ -613,8 +662,7 @@ function switchDeck(deckId) {
   return loadDeck(deckId).then(function(loaded) {
     if (loaded === false) return;
     renderDeckPicker();
-    renderCategories();
-    renderSections();
+    renderFilters();
     render();
   }).catch(showError);
 }
@@ -716,14 +764,27 @@ function bindEvents() {
   $("#settingsToggle").addEventListener("click", function() {
     setSettingsOpen(!document.body.classList.contains("settings-open"));
   });
-  $("#search").addEventListener("input", function(event) {
-    var value = event.target.value;
+  function searchChanged(event) {
     clearTimeout(searchTimer);
-    searchTimer = setTimeout(function() {
-      app.ui.query = value;
-      saveUi();
+    app.ui.query = event.target.value;
+    saveUi();
+    var generation = deckLoadGeneration;
+    function applySearch() {
+      if (generation !== deckLoadGeneration) return;
       render();
-    }, 200);
+    }
+    if (!app.ui.query.trim()) {
+      applySearch();
+      window.scrollTo(0, 0);
+    } else searchTimer = setTimeout(applySearch, 200);
+  }
+  $("#search").addEventListener("input", searchChanged);
+  $("#search").addEventListener("search", searchChanged);
+  $("#clearFilters").addEventListener("click", clearFilters);
+  $("#filterLetterCount").addEventListener("change", function(event) {
+    app.ui.letterCount = event.target.value;
+    saveUi();
+    render();
   });
   $("#filterStatus").addEventListener("change", function(event) {
     app.ui.status = event.target.value;
@@ -816,10 +877,7 @@ function boot() {
     loadDeck(startId).then(function() {
       bindEvents();
       renderDeckPicker();
-      $("#search").value = app.ui.query;
-      $("#filterStatus").value = app.ui.status;
-      renderCategories();
-      renderSections();
+      renderFilters();
       render();
     }).catch(showError);
   } catch (error) {
